@@ -114,7 +114,7 @@
     "epochParamStrippedMatches": 3,
     "fromModelsDev": 434,
     "models": 625,
-    "pendingDiscoveries": 27,
+    "pendingDiscoveries": 26,
     "promotedDiscoveries": 175,
     "quickPromotedDiscoveries": 8,
     "releaseDateOutliersDropped": 20,
@@ -1919,7 +1919,7 @@
     },
     "liveModels": 609
   },
-  "generatedAt": "2026-10-01T02:07:32.476Z",
+  "generatedAt": "2026-10-01T13:48:04.323Z",
   "livebench": {
     "_note": "LiveBench 官方榜（Apache-2.0，本轮调研里许可证最干净的一份）。release 清单优先从上游仓库的 LIVE_BENCH_RELEASES 常量解析，解析失败才用内置兜底清单——写死清单意味着新 release 不会被自动发现，与「发布后无人维护」的承诺相悖。releasesSkipped 里是题目集换代之前的 release，跨那个断点分数不可比（中位差 27.6 分）。",
     "matchedModels": 123,
@@ -2013,15 +2013,15 @@
       "ok": true
     },
     "lmarena": {
-      "note": "7/7 个分榜，共 320 条 Arena 分",
+      "note": "7/7 个分榜，共 321 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "note": "models.json 434 条；api.json 225 provider / 8341 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
+      "note": "models.json 434 条；api.json 225 provider / 8339 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
       "ok": true
     },
     "openrouter": {
-      "note": "464 条；已剔除 artificial_analysis 194 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "note": "462 条；已剔除 artificial_analysis 193 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
@@ -2029,7 +2029,7 @@
       "ok": true
     },
     "vercel-gateway": {
-      "note": "397 条（language 268 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "note": "396 条（language 267 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }
   },
