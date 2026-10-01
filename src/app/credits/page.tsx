@@ -1,6 +1,7 @@
 import { GroundBackdrop } from '@/components/world/Ground';
 import { SiteHeader } from '@/components/world/SiteHeader';
 import { DEFAULT_LANG, getDict } from '@/lib/i18n';
+import { outbound } from '@/lib/outbound';
 
 export const metadata = { title: '素材署名' };
 
@@ -25,6 +26,8 @@ const CHARACTER_SOURCES: { who: string; basis: string; href?: string }[] = [
   { who: '豆包', basis: '字节跳动豆包的官方 3D 形象' },
 ];
 
+const LMARENA_DATASET = 'https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset';
+
 export default function CreditsPage() {
   const lang = DEFAULT_LANG;
   const dict = getDict(lang);
@@ -47,7 +50,7 @@ export default function CreditsPage() {
               {CHARACTER_SOURCES.map((c) => (
                 <li key={c.who}>
                   {c.who}：
-                  {c.href ? (
+                  {outbound(c.href) ? (
                     <a
                       href={c.href}
                       target="_blank"
@@ -78,14 +81,18 @@ export default function CreditsPage() {
               */}
               <li>
                 竞技场成绩（文生图、文生视频、图像与视频编辑、文本、搜索、文档）：
-                <a
-                  href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline decoration-dotted hover:text-[var(--color-gold)]"
-                >
-                  LMArena 官方榜单数据集
-                </a>
+                {outbound(LMARENA_DATASET) ? (
+                  <a
+                    href={LMARENA_DATASET}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline decoration-dotted hover:text-[var(--color-gold)]"
+                  >
+                    LMArena 官方榜单数据集
+                  </a>
+                ) : (
+                  'LMArena 官方榜单数据集（lmarena-ai/leaderboard-dataset）'
+                )}
                 ，
                 <a
                   href="https://creativecommons.org/licenses/by/4.0/"

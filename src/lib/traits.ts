@@ -95,7 +95,7 @@ function matchTraits(model: ModelRecord, ctx: TraitContext, now: Date): Trait[] 
   const age = daysSince(model.releaseDate, now);
 
   if (eci === 1) {
-    push({ id: 'strongest', label: '全球最强', tone: 'crown', title: '综合智力指数全球第一' });
+    push({ id: 'strongest', label: '全球第一', tone: 'crown', title: '综合智力指数全球第一' });
   } else if (eci != null && eci <= 5) {
     push({ id: 'top5', label: '五强', tone: 'crown', title: `综合智力第 ${eci} 名` });
   } else if (eci != null && eci <= 10) {

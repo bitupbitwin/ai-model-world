@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { ModelRecord } from '@/lib/types';
 import { attributionLabel } from '@/data/coding-leagues';
 import { BENCHMARK_CATEGORIES, benchmarkOf, isCodingBenchmark } from '@/data/benchmark-registry';
+import { outbound } from '@/lib/outbound';
 import {
   allScoresOf,
   buildScorePools,
@@ -78,6 +79,7 @@ export function ScoreLedger({ model, models }: { model: ModelRecord; models: Mod
               {g.rows.map(({ s, info, rank, total }) => {
                 const thirdParty = s.attribution === 'third-party';
                 const trackId = trackIdFor(pools, s.league, s.attribution);
+                const source = outbound(s.sourceUrl ?? info.homepage);
                 return (
                   <li key={`${s.league}-${s.attribution}-${s.source}`} className="border-b border-white/10 py-2 last:border-0">
                     <div className="flex items-baseline justify-between gap-3">
@@ -115,14 +117,14 @@ export function ScoreLedger({ model, models }: { model: ModelRecord; models: Mod
                         {attributionLabel(s.attribution)}
                       </span>
                     </div>
-                    {(s.sourceUrl || info.homepage) && (
+                    {source && (
                       <a
-                        href={s.sourceUrl ?? info.homepage!}
+                        href={source}
                         target="_blank"
                         rel="noreferrer"
                         className="mt-0.5 block truncate text-[13px] text-[var(--color-ghost)] hover:text-[var(--color-parchment)]"
                       >
-                        {s.sourceUrl ?? info.homepage}
+                        {source}
                       </a>
                     )}
                   </li>

@@ -11,6 +11,7 @@ import { buildScales, rankByEci, visualOf } from "@/lib/derive";
 import { DEFAULT_LANG, getDict } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
 import { KINDS, kindOf, type ModelKind } from "@/lib/kind";
+import { outbound } from "@/lib/outbound";
 import type { ModelRecord } from "@/lib/types";
 
 /**
@@ -83,6 +84,7 @@ export default async function VendorPage({
   if (!vendor) notFound();
 
   const profile = profileFor(vendor.id);
+  const homepage = outbound(profile.homepage);
   const now = new Date(snapshot.generatedAt);
   const scales = buildScales(snapshot.models);
   const ranks = rankByEci(snapshot.models);
@@ -160,9 +162,9 @@ export default async function VendorPage({
                   共 {family.length} 个模型
                   {retired > 0 && ` · ${retired} 个已退役`}
                 </span>
-                {profile.homepage && (
+                {homepage && (
                   <a
-                    href={profile.homepage}
+                    href={homepage}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--color-gold)] hover:underline"

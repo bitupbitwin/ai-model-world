@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { DEFAULT_LANG, getDict } from '@/lib/i18n';
+import { outbound } from '@/lib/outbound';
 
 /** 数据源署名。CC-BY 4.0 要求每个展示页都能找到出处，所以放在全站布局里而不是某一页。 */
 const DATA_SOURCES = [
@@ -42,7 +43,7 @@ const REPO = { name: 'liyupi/ai-model-world', href: 'https://github.com/liyupi/a
 /** 免费教程单独拎出来做主按钮：三个站点并列时它会被淹没，而它是这里最值得点的一个。 */
 const TUTORIAL = {
   name: 'AI 编程入门教程',
-  blurb: '零基础学 Vibe Coding · 免费',
+  blurb: '零基础学 Vibe Coding',
   href: 'https://ai.codefather.cn/vibe',
 };
 
@@ -86,6 +87,7 @@ function FishCrest({ size = 14 }: { size?: number }) {
 }
 
 function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
+  if (!outbound(href)) return <span className="text-[var(--color-parchment)]">{children}</span>;
   return (
     <a
       href={href}

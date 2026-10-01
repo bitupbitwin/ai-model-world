@@ -66,7 +66,7 @@ const GENERAL: Record<string, Entry> = {
   // ── 综合 ──
   eci: {
     label: '综合智力',
-    blurb: 'Epoch Capabilities Index，把十几项学术评测归并成一个总分。想知道「谁最强」，先看这一栏。',
+    blurb: 'Epoch Capabilities Index，把十几项学术评测归并成一个总分。想看综合实力，先看这一栏。',
     category: '综合',
     priority: 1,
     homepage: 'https://epoch.ai/benchmarks/eci',

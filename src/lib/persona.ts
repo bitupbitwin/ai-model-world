@@ -70,7 +70,7 @@ function dimensionsFor(
   codingOf: (m: ModelRecord) => CodingConsensus | null,
 ): Dimension[] {
   return [
-    { id: 'intelligence', superlative: '综合智力最强', value: (m) => m.benchmarks.eci, order: 'desc' },
+    { id: 'intelligence', superlative: '综合智力第一', value: (m) => m.benchmarks.eci, order: 'desc' },
     /*
      * 编程用的是多榜共识分（见 coding-consensus.ts），不是单一榜单的原始分。
      * 单榜取最大值会把「最会写代码」颁给被测得最早的老模型——已经翻过一次车。

@@ -5,6 +5,7 @@ import { rankByEci } from '@/lib/derive';
 import { formatCount, formatDate, formatPrice } from '@/lib/format';
 import { DEFAULT_LANG } from '@/lib/i18n';
 import { kindOf } from '@/lib/kind';
+import { outbound } from '@/lib/outbound';
 import { allScoresOf, buildTrackIndex, defaultTrackId, TRACK_CATEGORIES, type Track } from '@/lib/scores';
 import type { AllRow, AllTableData, ExplorerData, LeanModel, LeanVendor } from './types';
 
@@ -47,7 +48,8 @@ export function serializeExplorer(snapshot: WorldSnapshot, tracks: Track[] = bui
   const index = new Map(snapshot.models.map((m, i) => [m.id, i]));
   const urls: string[] = [];
   const urlIndex = new Map<string, number>();
-  const urlOf = (u: string | null): number | undefined => {
+  const urlOf = (raw: string | null): number | undefined => {
+    const u = outbound(raw);
     if (!u) return undefined;
     let i = urlIndex.get(u);
     if (i == null) {
@@ -70,7 +72,7 @@ export function serializeExplorer(snapshot: WorldSnapshot, tracks: Track[] = bui
       scale: t.scale,
       superseded: t.superseded,
       selfReported: t.selfReported,
-      homepage: t.homepage,
+      homepage: outbound(t.homepage),
       entries: t.entries.map((e) => {
         const u = urlOf(e.sourceUrl);
         return {

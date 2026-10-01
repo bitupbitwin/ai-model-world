@@ -1,6 +1,7 @@
 import type { BenchmarkScore } from '@/lib/types';
 import { attributionLabel, leagueOf } from '@/data/coding-leagues';
 import { formatScoreByUnit } from '@/lib/format';
+import { outbound } from '@/lib/outbound';
 
 /**
  * 编程战绩明细。
@@ -33,6 +34,8 @@ export function CodingLedger({ scores }: { scores: BenchmarkScore[] }) {
         {sorted.map((s) => {
           const league = leagueOf(s.league);
           const thirdParty = s.attribution === 'third-party';
+          const homepage = outbound(league.homepage);
+          const source = outbound(s.sourceUrl);
           return (
             <li
               key={`${s.league}-${s.source}`}
@@ -40,9 +43,9 @@ export function CodingLedger({ scores }: { scores: BenchmarkScore[] }) {
             >
               <div className="flex items-baseline justify-between gap-3">
                 <span className="text-[12px] text-[var(--color-parchment)]">
-                  {league.homepage ? (
+                  {homepage ? (
                     <a
-                      href={league.homepage}
+                      href={homepage}
                       target="_blank"
                       rel="noreferrer"
                       className="hover:text-[var(--color-gold)]"
@@ -73,14 +76,14 @@ export function CodingLedger({ scores }: { scores: BenchmarkScore[] }) {
                   {attributionLabel(s.attribution)}
                 </span>
               </div>
-              {s.sourceUrl && (
+              {source && (
                 <a
-                  href={s.sourceUrl}
+                  href={source}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-0.5 block truncate text-[12px] text-[var(--color-ghost)] hover:text-[var(--color-parchment)]"
                 >
-                  {s.sourceUrl}
+                  {source}
                 </a>
               )}
             </li>

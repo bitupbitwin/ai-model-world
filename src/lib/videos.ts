@@ -92,6 +92,10 @@ const isAlnum = (c: string | undefined) => c != null && /[a-z0-9]/.test(c);
  * 「越狱版无审查」之类的标题，讲的是怎么绕开限制用境外服务或灰色渠道，不是实测。
  * 站点做成 B 站 Toy 之后，这类标题会让整站以「违法违规」被驳回（2026-09 实际发生过）。
  * 宁可错杀：少挂一条视频无所谓，挂错一条整站下架。
+ *
+ * 2026-10 平台后台给的整改口径更宽：违法违规、诱导性描述、敏感事件或人物指向一律回避，
+ * 「第三方来源不能免责」。所以「免费送」「限时抢先」「注意看简介」这类诱导，
+ * 「最强」「吊打」「封神」这类夸大，以及点名真实人物的标题也都不挂——站长自己的视频也不例外。
  */
 const RISKY_TITLE = new RegExp(
   [
@@ -101,15 +105,25 @@ const RISKY_TITLE = new RegExp(
     '白嫖|薅|羊毛|0元|零元|最低|低价接入|半价|官方一半|1毛|一毛',
     '作弊',
     '越狱|无审查|无审核|随便用|破限|解除限制|解锁|尺度|擦边|18禁|r18|nsfw|绅士|色色',
+    // 耸动与谣言
+    '原子弹|核弹|癫痫|窒息|昏迷|猝死|吓|封号|外挂|泄露|内幕|曝光|死|血|枪|炸|战争|政治|政府|日本|美国|中美|制裁',
+    // 真实人物（标题和 UP 主昵称都算）
+    '马斯克|孙宇晨|梁文锋|梁圣|梁子|杨植麟|奥特曼|altman|黄仁勋|扎克伯格|特朗普|拜登|普京|harris|kamala',
+    // 诱导、卖号、赚钱、金融交易
+    '免费|送|赠|领取|福利|赚钱|玩赚|变现|月入|副业|抢先|快来|速看|必看|赶紧|限时|白给|简介|评论区|私信|加群|进群|下载|入口',
+    '车队|正版订阅|几十款|量化交易|freqtrade|炒股|币',
+    // 夸大、震惊体、不实指控
+    '最强|吊打|碾压|秒杀|王炸|杀疯|乱杀|震撼|震惊|封神|天花板|全网|无敌|离谱|逆天|恐怖|疯了|觉醒|接管世界|雪崩|干翻|屠榜|完爆|击穿|史上',
+    '攻击|违规|被封|献礼',
+    // 粗口
+    '屎|王八蛋|脱裤',
   ].join('|'),
   'i',
 );
 
-/** 境外模型的「免费用」教程基本都是灰色渠道，单独收紧 */
-const FOREIGN_BRAND = /claude|gpt|gemini|grok|nano\s*banana|openai|sora|codex/i;
-
-export function isRiskyTitle(title: string): boolean {
-  return RISKY_TITLE.test(title) || (FOREIGN_BRAND.test(title) && /免费/.test(title));
+/** UP 主昵称也会出现在卡片上，一并检查 */
+export function isRiskyVideo(v: Pick<VideoRecord, 'title' | 'author'>): boolean {
+  return RISKY_TITLE.test(v.title) || RISKY_TITLE.test(v.author);
 }
 
 /**
@@ -151,7 +165,7 @@ export function pickVideos(
 
   const seen = new Set<string>();
   const hits = candidates.filter((v) => {
-    if (seen.has(v.bvid) || isRiskyTitle(v.title)) return false;
+    if (seen.has(v.bvid) || isRiskyVideo(v)) return false;
     const title = fold(v.title);
     if (!needles.some((n) => containsWord(title, n))) return false;
     seen.add(v.bvid);
@@ -175,7 +189,7 @@ export function videosFor(
   modelName: string,
 ): { videos: VideoRecord[]; queryName: string } {
   const entry = library.byModel[modelId];
-  const videos = (entry?.videos ?? []).filter((v) => !isRiskyTitle(v.title));
+  const videos = (entry?.videos ?? []).filter((v) => !isRiskyVideo(v));
   return { videos, queryName: entry?.matchedName ?? modelName };
 }
 
