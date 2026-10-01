@@ -1,3 +1,4 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import Link from 'next/link';
 import { GroundBackdrop } from '@/components/world/Ground';
 import { SiteHeader } from '@/components/world/SiteHeader';
@@ -9,7 +10,7 @@ import { DEFAULT_LANG, getDict } from '@/lib/i18n';
 import { formatDate } from '@/lib/format';
 import type { ModelRecord } from '@/lib/types';
 
-export const metadata = { title: '时间线' };
+export const metadata = pageMetadata('/chronicle/', '时间线');
 
 /**
  * 时间线。

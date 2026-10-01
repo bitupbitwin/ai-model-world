@@ -1,11 +1,12 @@
 import { CompareButton } from '@/components/compare/CompareButton';
 import { getDict, type Lang } from '@/lib/i18n';
+import { siteConfig } from '@/config/site';
 
 /**
- * 鱼皮 AI 导航「模型动态」板块：新模型的实测与横向对比文章都汇总在这一页。
- * 固定地址，不随模型变化——那边是人工精选的合集，本站不去猜某个模型对应哪篇。
+ * OneNova Lab 的官方订阅价格与命令行支持入口。
+ * 固定地址统一读取品牌配置，不随模型变化。
  */
-const ARTICLE_URL = 'https://ai.codefather.cn/library/2072330710215032834';
+const ARTICLE_URL = siteConfig.links.modelHub.href;
 
 /**
  * B 站搜索页。搜索词由模型名现算，所以新模型上线当天这个按钮就是通的，

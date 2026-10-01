@@ -1,3 +1,4 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GroundBackdrop } from "@/components/world/Ground";
@@ -29,7 +30,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/vendor/[id]">) {
   const { id } = await params;
   const profile = profileFor(id);
-  return { title: `${profile.nameZh}的全部模型` };
+  return pageMetadata(`/vendor/${id}/`, `${profile.nameZh}的全部模型`);
 }
 
 /**

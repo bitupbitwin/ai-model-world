@@ -6,6 +6,8 @@
  * 视图组件一律接收 `lang` 参数，第二期只需新增 src/app/en/ 这层薄路由即可。
  */
 
+import { siteConfig } from '../config/site';
+
 export const LANGS = ['zh', 'en'] as const;
 export type Lang = (typeof LANGS)[number];
 export const DEFAULT_LANG: Lang = 'zh';
@@ -154,7 +156,7 @@ export interface Dict {
     dataFrom: string;
     artFrom: string;
     credits: string;
-    /** 站长署名前缀，拼成「作者：程序员鱼皮」 */
+    /** 上游字典保留的作者署名前缀 */
     author: string;
     /** 引流按钮前的引语 */
     alsoVisit: string;
@@ -187,10 +189,9 @@ export interface Dict {
  *    「记性」比「上下文窗口」对外行更好懂，这类留着。
  */
 const zh: Dict = {
-  siteName: '大模型世界',
-  siteTagline: '一眼看懂大模型的当下格局',
-  siteDescription:
-    '把每个大模型画成一个像素角色，用能力条和排行榜把「谁最聪明、谁最会编程、谁最便宜」摆在明面上。数据来自第三方公开评测，每 12 小时自动同步。',
+  siteName: siteConfig.name,
+  siteTagline: siteConfig.tagline,
+  siteDescription: siteConfig.description,
 
   nav: {
     plaza: '广场',
@@ -329,9 +330,9 @@ const zh: Dict = {
 
   reviews: {
     video: '查看评测视频',
-    article: '查看评测文章',
+    article: siteConfig.links.modelHub.name,
     videoHint: (name) => `站外链接：到 B 站搜「${name} 测评」，看别人实测的视频`,
-    articleHint: '站外链接：鱼皮 AI 导航的「模型动态」，新模型的实测与横向对比文章',
+    articleHint: siteConfig.links.modelHub.hint,
   },
 };
 

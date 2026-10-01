@@ -1,3 +1,4 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { loadSnapshot } from "@/lib/snapshot";
@@ -58,10 +59,9 @@ export async function generateMetadata({ params }: PageProps<"/model/[slug]">) {
   const model = loadSnapshot().models.find((m) => m.slug === slug);
   if (!model) return { title: "未知居民" };
   const profile = profileFor(model.vendorId);
-  return {
-    title: model.name,
-    description: `${profile.nameZh}的${model.name}：上下文 ${model.contextWindow ?? "未知"} tokens，输出单价 ${model.pricing.outputPerMTok ?? "未知"} 美元每百万 tokens。数据每 12 小时自动同步。`,
-  };
+  return pageMetadata(`/model/${slug}/`, model.name,
+    `${profile.nameZh}的${model.name}：上下文 ${model.contextWindow ?? "未知"} tokens，输出单价 ${model.pricing.outputPerMTok ?? "未知"} 美元每百万 tokens。数据每 12 小时自动同步。`);
+
 }
 
 /** 属性面板的一行。来源标注是这个站区别于「又一个模型排行榜」的地方。 */
@@ -475,7 +475,6 @@ export default async function ModelRoomPage({
           videos={video.videos}
           modelName={video.queryName}
           keyword={videoLibrary.keyword}
-          authorMid={videoLibrary.authorMid}
         />
       </div>
     </main>

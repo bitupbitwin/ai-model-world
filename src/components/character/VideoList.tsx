@@ -8,7 +8,7 @@ import { formatView, type VideoRecord } from '@/lib/videos';
  * 那条严格规则筛过（标题里必须出现模型名），最多 12 条。
  *
  * **每张卡上都印着 UP 主名字。** 这些是站外用户的作品，不是本站的评测结论，
- * 谁做的必须一眼可见；站长自己的视频额外打一个「站长」标并置顶。
+ * 谁做的必须一眼可见；全部视频统一按播放量降序。
  *
  * 封面 `<img>` **必须带 `referrerPolicy="no-referrer"`**：hdslb 有防盗链，
  * 带着非 bilibili 的 Referer 去取会吃 403，浏览器再报 `ERR_BLOCKED_BY_ORB`，图全白。
@@ -19,12 +19,10 @@ export function VideoList({
   videos,
   modelName,
   keyword,
-  authorMid,
 }: {
   videos: VideoRecord[];
   modelName: string;
   keyword: string;
-  authorMid: number;
 }) {
   if (videos.length === 0) return null;
   const searchUrl = `https://search.bilibili.com/all?keyword=${encodeURIComponent(`${modelName} ${keyword}`)}`;
@@ -64,14 +62,6 @@ export function VideoList({
                   referrerPolicy="no-referrer"
                   className="h-full w-full object-cover"
                 />
-                {v.mid === authorMid && (
-                  <span
-                    className="absolute left-1 top-1 px-1 text-[11px] font-semibold leading-tight text-[var(--color-ink)]"
-                    style={{ background: 'var(--color-gold)' }}
-                  >
-                    站长
-                  </span>
-                )}
                 <span
                   className="absolute bottom-1 right-1 px-1 font-pixel text-[12px] leading-tight text-[var(--color-parchment-lit)]"
                   style={{ background: 'rgb(0 0 0 / 0.7)' }}
@@ -106,7 +96,7 @@ export function VideoList({
       </ul>
 
       <p className="mt-3 text-[12px] leading-relaxed text-[var(--color-ghost)]">
-        以上为 B 站搜索结果，按播放量排（站长的视频置顶），内容由各 UP 主提供，不代表本站观点。
+        以上为 B 站搜索结果，按播放量降序排列，内容由各 UP 主提供，不代表本站观点。
       </p>
     </section>
   );

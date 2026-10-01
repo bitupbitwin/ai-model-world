@@ -3,6 +3,8 @@ import './globals.css';
 import { DEFAULT_LANG, getDict, htmlLang } from '@/lib/i18n';
 import { SiteFooter } from '@/components/world/SiteFooter';
 import { asset } from '@/lib/asset';
+import { siteConfig } from '@/config/site';
+import { pageMetadata } from '@/lib/site-metadata';
 
 const dict = getDict(DEFAULT_LANG);
 
@@ -17,8 +19,10 @@ const dict = getDict(DEFAULT_LANG);
 const fontFace = `@font-face{font-family:'Fusion Pixel';src:url('${asset('/fonts/pixel-zh.woff2')}') format('woff2');font-weight:400;font-style:normal;font-display:swap}`;
 
 export const metadata: Metadata = {
+  ...pageMetadata('/'),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${dict.siteName} · ${dict.siteTagline}`,
+    default: dict.siteName,
     template: `%s · ${dict.siteName}`,
   },
   description: dict.siteDescription,

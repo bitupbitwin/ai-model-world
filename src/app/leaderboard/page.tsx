@@ -1,3 +1,4 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import Link from 'next/link';
 import { GroundBackdrop } from '@/components/world/Ground';
 import { SiteHeader } from '@/components/world/SiteHeader';
@@ -7,7 +8,7 @@ import { loadSnapshot } from '@/lib/snapshot';
 import { buildTrackIndex } from '@/lib/scores';
 import { DEFAULT_LANG } from '@/lib/i18n';
 
-export const metadata = { title: '排行榜' };
+export const metadata = pageMetadata('/leaderboard/', '排行榜');
 
 /**
  * 排行榜。

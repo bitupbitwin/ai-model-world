@@ -1,9 +1,10 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import { GroundBackdrop } from '@/components/world/Ground';
 import { SiteHeader } from '@/components/world/SiteHeader';
 import { DEFAULT_LANG, getDict } from '@/lib/i18n';
 import { outbound } from '@/lib/outbound';
 
-export const metadata = { title: '素材署名' };
+export const metadata = pageMetadata('/credits/', '素材署名');
 
 /**
  * 素材署名页。

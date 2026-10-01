@@ -1,3 +1,4 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import Link from 'next/link';
 import { GroundBackdrop } from '@/components/world/Ground';
 import { SiteHeader } from '@/components/world/SiteHeader';
@@ -6,7 +7,7 @@ import { serializeAllTable } from '@/components/leaderboard/serialize';
 import { loadSnapshot } from '@/lib/snapshot';
 import { DEFAULT_LANG } from '@/lib/i18n';
 
-export const metadata = { title: '全部模型' };
+export const metadata = pageMetadata('/leaderboard/all/', '全部模型');
 
 /**
  * 全部模型总表。排行榜回答「谁最强」，这一页回答「有哪些、各是什么样」——

@@ -1,0 +1,101 @@
+name: 部署 OneNova 模型子站到 OSS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # GITHUB_TOKEN 提交不触发 push 工作流，必须监听同步工作流完成。
+  workflow_run:
+    workflows: [同步模型数据]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+# 三种触发共用一个锁；上传过程中不取消，防止页面和资源只更新一半。
+concurrency:
+  group: onenova-models-oss
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # 仅部署本仓库 main；同步失败、其他分支和外部仓库均不消费 Secrets。
+    if: >-
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository) ||
+      (github.event_name != 'workflow_run' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: 检查部署配置
+        id: config
+        env:
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=()
+          for name in OSS_ACCESS_KEY_ID OSS_ACCESS_KEY_SECRET OSS_BUCKET OSS_ENDPOINT; do
+            if [[ -z "${!name}" ]]; then missing+=("$name"); fi
+          done
+          if (( ${#missing[@]} )); then
+            echo "尚未配置 Secrets：${missing[*]}，本次成功跳过部署。"
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 检出同步提交之后的 main
+        if: steps.config.outputs.ready == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # workflow_run.head_sha 是同步开始前的提交；这里必须重新读取 main。
+          ref: main
+          persist-credentials: false
+
+      - name: 准备 Node.js
+        if: steps.config.outputs.ready == 'true'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安装依赖与构建静态站点
+        if: steps.config.outputs.ready == 'true'
+        env:
+          NEXT_PUBLIC_SITE_URL: https://models.onenovalab.com
+        run: |
+          npm ci
+          npm run lint
+          node --test scripts/deploy/oss.test.mjs
+          npm run build
+          npx tsx scripts/qa/verify-onenova.ts
+
+      - name: 安装校验过的阿里云官方 ossutil
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 从阿里云官方地址下载固定版本，SHA-256 已在本地实际下载后核验。
+          archive="$RUNNER_TEMP/ossutil-2.4.0-linux-amd64.zip"
+          curl --fail --silent --show-error --location --retry 3 --proto '=https' --tlsv1.2 \
+            'https://gosspublic.alicdn.com/ossutil/v2/2.4.0/ossutil-2.4.0-linux-amd64.zip' -o "$archive"
+          echo "85edf66b2fb7238f5c7e25cab820cf29312319fe4935b7c86a6b8485eb434f3c  $archive" | sha256sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/onenova-ossutil"
+          chmod +x "$RUNNER_TEMP/onenova-ossutil/ossutil-2.4.0-linux-amd64/ossutil"
+          echo "$RUNNER_TEMP/onenova-ossutil/ossutil-2.4.0-linux-amd64" >> "$GITHUB_PATH"
+
+      - name: 上传新文件并清理本站清单中的旧文件
+        if: steps.config.outputs.ready == 'true'
+        env:
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+        run: node scripts/deploy/oss.mjs

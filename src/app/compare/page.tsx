@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/site-metadata';
 import { CompareView } from '@/components/compare/CompareView';
 import { GroundBackdrop } from '@/components/world/Ground';
 import { SiteHeader } from '@/components/world/SiteHeader';
 import { asset } from '@/lib/asset';
 import { DEFAULT_LANG } from '@/lib/i18n';
 
-export const metadata = { title: '模型对比' };
+export const metadata = pageMetadata('/compare/', '模型对比');
 
 /**
  * 模型对比。选哪几个模型全在地址栏里（`?m=a,b`），页面本身是一张空壳，

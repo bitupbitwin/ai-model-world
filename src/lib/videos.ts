@@ -35,7 +35,7 @@ export interface VideoRecord {
   view: number;
   /** UP 主昵称 */
   author: string;
-  /** UP 主 mid，用来认出站长自己的视频 */
+  /** UP 主 mid，仅作为来源元数据 */
   mid: number;
 }
 
@@ -54,8 +54,8 @@ export interface VideoLibrary {
   fetchedAt: string;
   /** 搜索时拼在模型名后面的词，写进数据里是为了让读者能复现同一次搜索 */
   keyword: string;
-  /** 站长 mid，他的视频会排在最前面并打标 */
-  authorMid: number;
+  /** 兼容上游旧快照的字段，本站不使用此值排序或打标。 */
+  authorMid?: number;
   /** model.id → 这个模型的视频 */
   byModel: Record<string, ModelVideos>;
 }
@@ -150,14 +150,12 @@ export function containsWord(haystack: string, needle: string): boolean {
  * 只认前者会把整条产品线的实测全漏掉，只认后者又会把那条真写了 0731 的漏掉，
  * 因为词边界规则下 `deepseekv4flash` 后面紧跟 `0731` 不算一个完整的词。
  *
- * 排序：**站长的视频排最前**（这是他的站，而且做成 B 站 Toy 之后作者视频是第一现场），
- * 其余按播放量降序。不沿用 B 站的相关性顺序，是因为那个顺序说不清；
+ * 排序：全部视频按播放量降序，同播放量按 BV 号稳定排序。不沿用 B 站的相关性顺序，是因为那个顺序说不清；
  * 播放量是卡片上就印着的数字，读者能自己判断这个排序合不合理。
  */
 export function pickVideos(
   names: string | string[],
   candidates: VideoRecord[],
-  authorMid: number,
   limit = MAX_PER_MODEL,
 ): VideoRecord[] {
   const needles = (Array.isArray(names) ? names : [names]).map(fold).filter((n) => n.length >= MIN_NEEDLE);
@@ -172,12 +170,7 @@ export function pickVideos(
     return true;
   });
 
-  hits.sort((a, b) => {
-    const am = a.mid === authorMid ? 0 : 1;
-    const bm = b.mid === authorMid ? 0 : 1;
-    if (am !== bm) return am - bm;
-    return b.view - a.view || a.bvid.localeCompare(b.bvid);
-  });
+  hits.sort((a, b) => b.view - a.view || a.bvid.localeCompare(b.bvid));
 
   return hits.slice(0, limit);
 }
@@ -189,7 +182,8 @@ export function videosFor(
   modelName: string,
 ): { videos: VideoRecord[]; queryName: string } {
   const entry = library.byModel[modelId];
-  const videos = (entry?.videos ?? []).filter((v) => !isRiskyVideo(v));
+  const videos = (entry?.videos ?? []).filter((v) => !isRiskyVideo(v))
+    .sort((a, b) => b.view - a.view || a.bvid.localeCompare(b.bvid));
   return { videos, queryName: entry?.matchedName ?? modelName };
 }
 
