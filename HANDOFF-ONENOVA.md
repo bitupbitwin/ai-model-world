@@ -1,5 +1,7 @@
 # OneNova 模型子站交接说明
 
+> 第一至九节记录首轮提交 c1a4b18 的历史状态。第二轮的当前部署方式、依赖版本和验收数据以第十节「第二轮修订」为准，首轮全量明文上传方案已被替换。
+
 验收完成日期：2026-10-02（北京时间）。所有工作在 Windows 本机的 `I:\ai-model-world` 完成，未读写另一个项目 `I:\onenovalab.com`。
 
 ## 一、当前状态与审核入口
@@ -264,3 +266,140 @@ git merge upstream/main
 5. **命名。** 当前严格使用要求的“AI 模型世界 · OneNova Lab”。若希望导航更短，可考虑“模型世界 · OneNova”，但本次没有擅自更名。
 
 上述待决定项不影响本次本地改造、构建与提交的可审阅性；任何推送、工作流运行和 OSS 上传都留待审核之后。
+
+## 十、第二轮修订
+
+日期：2026-10-02。修改范围仅限 `I:\ai-model-world`；在 `onenova` 上新增本地提交，保留 `c1a4b18`，不改写历史。没有推送、运行 GitHub 工作流、连接 OSS 或操作主站项目。
+
+### 1. 改动文件
+
+| 文件 | 本轮改动 |
+| --- | --- |
+| `scripts/deploy/prepare.mjs`（新增） | 确定性 gzip、MIME 类型、上传字节 sha256、v1/v2 清单校验、分组增量计划。 |
+| `scripts/deploy/oss.mjs` | 上传改为按 v2 指纹增量分组；加入无凭据 `--plan`；控制清单也 gzip，兼容读取旧明文与新 gzip 字节。 |
+| `scripts/deploy/oss.test.mjs` | 扩展为 15 项完全离线测试。 |
+| `.github/workflows/deploy-oss.yml` | `timeout-minutes` 从 30 改为 60；三种触发、最小权限、固定 Action SHA 与四个 Secrets 保持原审核方案。 |
+| `package.json`、`package-lock.json` | 只升级 `next` 和配套 `eslint-config-next` 到 16.3.8；锁文件同时更新它们依赖的 `@next/*` 包。React、ESLint 等其他直接依赖版本未变。 |
+| `scripts/export/build-id.ts`（新增）、`next.config.ts` | 用实际构建输入生成稳定 build id，避免 Next 默认随机 ID 使重复构建的 HTML/RSC 全部改变。 |
+| `scripts/qa/serve-static.py` | 加入 gzip 模拟模式，原名对象返回预压缩字节及清单声明的响应头，目录首页和 404 行为保留。 |
+| `scripts/qa/browser-onenova.ts` | 支持指定本地验收网址及 gzip 模式；核对 HTML、RSC、脚本、样式的 gzip 头和二进制无压缩头。 |
+| `eslint.config.mjs` | 忽略 `.next-*/**`，与现有 `.gitignore` 保持一致，避免把预压缩 `.js` 和本地生成工具当成源码。 |
+| `HANDOFF-ONENOVA.md` | 标明首轮记录范围，新增本节及实测数据。 |
+
+品牌、备案、上游代码署名、数据/字体许可和去个人化方案均未再改动。模型数据、视频快照、排名与合规闸门未变。Next 16.3.8 的本机导出仍需要原有 Windows 预取文件名兼容脚本，最终构建修正 697 个路径，因此继续保留。
+
+### 2. 预压缩、响应头与 v2 清单
+
+已在本机实际执行官方 ossutil 2.4.0 的 `cp --help`，核实参数为 `--content-encoding`、`--content-type`、`--cache-control` 和 `--recursive`（别名 `-r`）。帮助说明也确认本地目录上传按相对目录结构形成对象键。没有运行任何连接 OSS 的命令。
+
+- `.html .txt .json .js .css .xml .svg .webmanifest .map` 等文本使用 Node gzip level 9。gzip 头不含文件名，MTIME 固定为 0，OS 头固定为 255；文件 mtime 和暂存路径不参与字节输出。同一内容两次压缩及修改 mtime 后的字节一致性均通过测试。
+- 图片、字体等二进制保持原字节。`out/` 仍是可直接本地访问的未压缩构建产物，预压缩文件只放在新的 `.next-*` 目录。
+- 对象键保持原名，不加 `.gz`。文本上传时明确设置 `Content-Encoding: gzip`。HTML 为 `text/html; charset=utf-8`，RSC `.txt` 为 `text/plain; charset=utf-8`，JSON 为 `application/json; charset=utf-8`，其他类型按代码中的 MIME 表设置；二进制不设置 gzip 编码。
+- v2 清单的 `files` 是对象键到元信息的映射，逐个记录 `sha256`、`contentEncoding`、`contentType`、`cacheControl`。sha256 对应实际上传字节，任一指纹或响应头变化都会触发上传。没有清单或只有 v1 文件列表时，全部当前文件需要上传。
+- 本地计划保存可读的明文 JSON 清单；远端 `_onenova/models-deploy-manifest.json` 自身也是 gzip JSON，并设置相同的短缓存。读取远端 `ossutil cat` 时保留原始二进制，再按 gzip magic 解码，兼容旧明文 v1/v2 清单；本地旧清单也接受两种形式和 UTF-8 BOM。控制清单不嵌入自己的对象表，避免 sha256 自引用。
+- 上传顺序为哈希资源 → RSC、JSON 及其他资源 → HTML。按阶段与相同的响应头组合分组，只有需要上传的文件才复制到各组暂存目录，保持相对路径，每组只调用一次 `cp --recursive --force`。无变化时不上传文件，也不更新控制清单。
+- 所有组上传成功后才清理旧文件。只删除上次本站清单记录、此次不存在的非哈希对象；历史哈希资源仍保留。v1 没有元信息的历史哈希只保留远端对象，不伪造它们的 sha256；v2 已知的历史哈希元信息继续保留。
+- 精灵文件按模型 ID 命名，名字中的八位发布日期不是内容哈希，使用短缓存。HTML、RSC、数据 JSON 和 sitemap 也保持短缓存；它们不会仅因文件名像哈希而被设成长缓存。
+
+Bucket 名、站点 owner、清单版本、对象路径等安全校验与首次不删除清单外对象的边界保留。缺少四个 Secrets 中任意一个时仍成功跳过。`cp --help` 列出 `oss:ListObjects`、`oss:GetObject`、`oss:PutObject` 权限，清理另需 `oss:DeleteObject`；都应限定在本站独占 Bucket，不授予删除 Bucket 或访问主站 Bucket 的权限。本次没有配置这些云端权限。
+
+### 3. 两次 --plan 的最终实测结果
+
+以下结果来自最终实现。先执行无旧清单的计划，再完整运行一次 `npm run build`（包含精灵和搜索索引重生成、静态导出与 postbuild），最后以第一份清单重新执行计划。两次均不读取凭据、不调用 ossutil、不连接 OSS。
+
+```powershell
+# 第一次：首次部署；--prepared-dir 指定的目录必须尚不存在。
+node scripts/deploy/oss.mjs --plan --manifest-out .next-qa/oss-manifest-first-final.json --report-out .next-qa/oss-plan-first-final.json --prepared-dir .next-oss-preview-first-final
+
+# 完整重建，然后第二次：
+npm run build
+npx tsx scripts/qa/verify-onenova.ts
+node scripts/deploy/oss.mjs --plan --previous-manifest .next-qa/oss-manifest-first-final.json --manifest-out .next-qa/oss-manifest-second-final.json --report-out .next-qa/oss-plan-second-final.json --prepared-dir .next-oss-preview-second-final
+```
+
+重新验收时，若上述预压缩目录已存在，请使用新的 `.next-*` 名称，或省略 `--prepared-dir` 让脚本用临时目录并自动清理。计划清单中的 Bucket 使用 `OSS_BUCKET` 名字占位，不需要凭据。可以只运行 `node scripts/deploy/oss.mjs --plan`，默认新清单输出到 `.next-qa/oss-plan-manifest.json`。
+
+| 指标 | ① 无旧清单 | ② 完整重建后读取①的 v2 清单 |
+| --- | ---: | ---: |
+| 当前站点文件数 | 4,845 | 4,845 |
+| 全站原始字节数 | 654,185,221（623.88 MiB） | 654,185,221 |
+| 全站上传版本字节数 | 113,369,238（108.12 MiB） | 113,369,238 |
+| 待上传站点文件数 | 4,845 | **0** |
+| 待上传文件压缩前字节数 | 654,185,221 | **0** |
+| 待上传文件字节数 | 113,369,238 | **0** |
+| 待清理对象数 | 0 | **0** |
+| 需要更新控制清单 | 是 | 否 |
+| 控制清单原始 / gzip 字节数 | 1,392,687 / 138,454 | 相同，但不上传 |
+| 预计总上传字节数（含清单） | **113,507,692（108.25 MiB）** | **0** |
+
+首次文件上传分为 11 组，再最后上传一次控制清单，共 12 次 `cp` 调用；不是 4,845 次进程启动。读取远端清单的 `cat` 不算上传。第二次只需读取清单，所有分组均为 0 个文件、0 字节，清单也不重传。
+
+各组的最终结果如下。长缓存指 `public, max-age=31536000, immutable`；短缓存指 `no-cache, max-age=0, must-revalidate`。文本 Content-Type 均带 `charset=utf-8`。
+
+| 阶段 | 类型 | 编码 / 缓存 | ① 文件数 | ① 原始字节 | ① 上传字节 | ② 文件数 / 上传字节 |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| 哈希资源 | image/x-icon | 无 / 长 | 1 | 25,931 | 25,931 | 0 / 0 |
+| 哈希资源 | application/javascript | gzip / 长 | 16 | 751,287 | 240,419 | 0 / 0 |
+| 哈希资源 | text/css | gzip / 长 | 1 | 37,097 | 8,046 | 0 / 0 |
+| 数据与其他资源 | font/woff2 | 无 / 短 | 1 | 49,272 | 49,272 | 0 / 0 |
+| 数据与其他资源 | image/png | 无 / 短 | 625 | 8,461,434 | 8,461,434 | 0 / 0 |
+| 数据与其他资源 | image/x-icon | 无 / 短 | 1 | 25,931 | 25,931 | 0 / 0 |
+| 数据与其他资源 | application/json | gzip / 短 | 3 | 1,131,673 | 112,269 | 0 / 0 |
+| 数据与其他资源 | application/xml | gzip / 短 | 1 | 89,746 | 4,436 | 0 / 0 |
+| 数据与其他资源 | image/svg+xml | gzip / 短 | 5 | 3,314 | 1,859 | 0 / 0 |
+| 数据与其他资源 | text/plain | gzip / 短 | 3,491 | 408,435,086 | 68,564,353 | 0 / 0 |
+| HTML | text/html | gzip / 短 | 700 | 235,174,450 | 35,875,288 | 0 / 0 |
+
+关键页面的上传字节：
+
+| 对象 | 原始字节 | gzip 字节 |
+| --- | ---: | ---: |
+| `index.html` | 3,116,406 | 181,632（177.38 KiB） |
+| `chronicle/index.html` | 6,631,933 | 283,843（277.19 KiB） |
+| `model/deepseek-deepseek-v3-2/index.html` | 408,972 | 62,199（60.74 KiB） |
+
+原始与 gzip 字节均来自本机实际文件。以上网络量是对象正文，不包含 HTTP 请求头、重试等开销，不是跨境耗时保证。
+
+### 4. 重建稳定性的结论与建议
+
+第二次没有接近全量，最终结果为 **零上传**。核对 Next 安装包 `dist/build/index.js` 确认其默认 ID 使用 `nanoid`，该随机 ID会进入 HTML、RSC 和静态构建目录。这会让相同源代码和快照重建后仍产生大量字节差异。
+
+已按 Next 官方 `generateBuildId` 接口改成实际输入的内容哈希。输入包括 `src/`、`public/`（生成精灵和搜索索引）、两份运行时数据快照、Next/TypeScript/PostCSS 配置、依赖及锁文件、ID 脚本自身、站点网址/基础路径和 Node 版本/平台/架构；不依赖 Git 提交号、文件 mtime、当前时间或无关的同步报告和交接文档。最终两次构建均为 `onenova-a84dd4a4ae552b029abc5277`。
+
+这个结果说明同一平台、工具版本、配置、代码与数据重复构建不会浪费上传量，不能据此承诺真实数据更新只改变少数页面。快照内容变化会改变构建 ID，共享的数据、导航和排行榜还可能使多份 HTML/RSC 一起变化；这些实际变化仍需要上传，上传的是压缩字节。将来如果引入新的运行时数据文件或影响输出的构建配置，应把它加入 ID 输入。跨 Windows/Linux 或 Node 版本变化时也不保证零差异。
+
+后续若实际同步仍更新大多数 RSC，可再评估上游页面共享数据的拆分和构建身份粒度，不用固定常量 ID 或单纯忽略时间戳掩盖真实内容变化。本轮没有改变排名、日期显示或页面数据合同。
+
+### 5. Next 升级与 npm audit
+
+先执行 `npm view next versions --json`，过滤稳定 `16.3.x`，2026-10-02 取得的最高补丁为 **16.3.8**。官方 [GHSA-vcvr-r3jv-pc5j 公告](https://github.com/vercel/next.js/security/advisories/GHSA-vcvr-r3jv-pc5j)列出受影响范围 `>=16.2.0 <16.3.6`、修复版本 16.3.6；[Next 官方发布页](https://nextjs.org/blog)确认 2026-09-30 的 16.3.8 安全版本。已把 `next`、`eslint-config-next` 精确升级至 **16.3.8**，没有使用 canary。
+
+升级并重新 `npm ci` 后：
+
+- `npm audit`：**共 1 项 high，critical 0，moderate 0，low 0**。Next 严重告警已消除。
+- 剩余包为开发依赖链中的 `brace-expansion`，本机两处版本是 **1.1.18 / 5.0.9**，分别经 ESLint 的 minimatch 与 TypeScript ESLint 的 minimatch 引入。报告涉及 `GHSA-q2hr-2g5m-vwhr`、`GHSA-qhr7-859c-m2p7`、`GHSA-6j4f-fj2g-mc7p`。未执行 `npm audit fix` 或扩大依赖升级范围，留给审核者另行处理。
+- `npm audit --omit=dev`：**0 项告警**。
+- npm 另提示上游锁定的 ESLint 9.39.5 已停止支持；它不是新增的 audit 项，本轮按要求不升级该直接依赖。
+
+原始审计结果保存在本机 `.next-qa/audit-round2.json` 和 `.next-qa/audit-production-round2.json`，版本查询在 `.next-qa/next-versions-round2.json`，均忽略不提交。
+
+### 6. 本轮验收
+
+`npm ci`、`npm run lint`、`npm run build`、`npx tsx scripts/qa/verify-onenova.ts`、`node --test scripts/deploy/oss.test.mjs` 全部通过。页面全量检查仍为 696 个公开路由；部署测试 **15 项通过、0 项失败**，覆盖 gzip 确定性、mtime 无关、文本/二进制、正确响应头、零变化/单文件变化/仅响应头变化、v1 迁移、上传顺序、清理范围、失败不删除、缺少 Secrets、无环境的计划 CLI，以及 gzip/明文清单解码。
+
+本地 gzip 验收服务实际按原名返回预压缩正文和 `Content-Encoding: gzip`，Chrome 自动解码，并未在服务端解压：
+
+```powershell
+python scripts/qa/serve-static.py --port 4322 --gzip-dir .next-oss-preview-first-final --manifest .next-qa/oss-manifest-first-final.json
+
+# 另一个终端：
+$env:ONENOVA_QA_URL = 'http://127.0.0.1:4322'
+$env:ONENOVA_QA_GZIP = '1'
+npx tsx scripts/qa/browser-onenova.ts
+```
+
+1440×900 与 390×900 各 9 项，共 **18 项通过**。首页、时间线、模型页均正常渲染；文本分类、厂商、排行榜、搜索“多模态”、署名和真实 404 也通过。检查 HTML gzip/Content-Type、RSC `.txt` 类型、脚本样式编码，以及 PNG/字体没有 gzip 头；无页面脚本异常、非预期控制台错误或实际资源请求失败。404 的预期状态提示与 Next 主动取消的 HEAD 探测仍单独记录，不当成脚本错误。
+
+浏览证据在 `.next-qa/gzip-browser/browser-results.json` 及同目录截图，两次最终计划在 `.next-qa/oss-plan-first-final.json`、`.next-qa/oss-plan-second-final.json`，可读清单在对应 `oss-manifest-*-final.json`，预压缩对象在对应 `.next-oss-preview-*-final/`。这些再生产物全部留本地、忽略不提交。部署时的暂存目录经过绝对路径范围校验后才清理，不覆盖现有目录，也不修改原始 `out/`。
+
+当前首次部署应按 **约 108.25 MiB（含 gzip 控制清单）**规划。真实 OSS 接入、GitHub runner 跨境吞吐、错误页/域名/CDN配置仍未连接验证；本轮不提供已经上线或云端已通过的结论。

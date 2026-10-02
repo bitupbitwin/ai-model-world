@@ -8,7 +8,9 @@ import { videosFor, type VideoLibrary } from '../../src/lib/videos';
 import type { WorldSnapshot } from '../../src/lib/types';
 
 async function main() {
-  const evidence = path.resolve('.next-qa');
+  const gzipMode = process.env.ONENOVA_QA_GZIP === '1';
+  const baseUrl = process.env.ONENOVA_QA_URL || 'http://127.0.0.1:4321';
+  const evidence = path.resolve(gzipMode ? '.next-qa/gzip-browser' : '.next-qa');
   fs.mkdirSync(path.join(evidence, 'tmp'), { recursive: true });
   process.env.TEMP = process.env.TMP = path.join(evidence, 'tmp');
   const snapshot = JSON.parse(fs.readFileSync('data/models.json', 'utf8')) as WorldSnapshot;
@@ -27,6 +29,20 @@ async function main() {
       page.on('pageerror', (error) => errors.push(error.message));
       page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
       page.on('requestfailed', (request) => requests.push(`${request.method()} ${request.url()}：${request.failure()?.errorText}`));
+      if (gzipMode) page.on('response', (response) => {
+        const url = new URL(response.url());
+        if (url.origin !== new URL(baseUrl).origin || response.status() !== 200) return;
+        const headers = response.headers();
+        if (/\.(js|css|txt|json|xml|svg|webmanifest|map)$/.test(url.pathname) && headers['content-encoding'] !== 'gzip') {
+          errors.push(`文本响应没有 gzip 头：${url.pathname}`);
+        }
+        if (url.pathname.endsWith('.txt') && headers['content-type'] !== 'text/plain; charset=utf-8') {
+          errors.push(`RSC 响应类型错误：${url.pathname}`);
+        }
+        if (/\.(png|woff2)$/.test(url.pathname) && headers['content-encoding']) {
+          errors.push(`二进制文件不应压缩：${url.pathname}`);
+        }
+      });
       const pages = [
         ['首页', '/', 'home'], ['文本模型分类', '/leaderboard/all/?kind=text', 'text'],
         ['深度求索厂商', '/vendor/deepseek/', 'vendor'], ['模型详情', `/model/${model.slug}/`, 'model'],
@@ -35,8 +51,12 @@ async function main() {
       ];
       for (const [name, route, shot] of pages) {
         errors.length = 0; requests.length = 0;
-        const response = await page.goto(`http://127.0.0.1:4321${route}`, { waitUntil: 'networkidle', timeout: 60000 });
+        const response = await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle', timeout: 60000 });
         const status = response?.status();
+        if (gzipMode) {
+          assert.equal(response?.headers()['content-encoding'], 'gzip');
+          assert.equal(response?.headers()['content-type'], 'text/html; charset=utf-8');
+        }
         assert.equal(status, shot === '404' ? 404 : 200, `${name}状态码`);
         if (shot === '404') await page.getByRole('heading', { name: '404 · 页面不存在' }).waitFor();
         assert.equal(await page.locator('footer').count(), 1);
@@ -89,7 +109,7 @@ async function main() {
         }
       }
       errors.length = 0; requests.length = 0;
-      await page.goto('http://127.0.0.1:4321/', { waitUntil: 'networkidle' });
+      await page.goto(baseUrl + '/', { waitUntil: 'networkidle' });
       const search = page.getByRole('combobox');
       await search.fill('多模态');
       const result = page.getByRole('option').filter({ hasText: '多模态' }).first();
@@ -112,6 +132,6 @@ async function main() {
     await browser.close();
     fs.writeFileSync(path.join(evidence, 'browser-results.json'), JSON.stringify(results, null, 2) + '\n');
   }
-  console.log('宽屏与手机逐页验证通过，共 ' + results.length + ' 项，结果与截图位于 .next-qa/。');
+  console.log('宽屏与手机逐页验证通过，共 ' + results.length + ' 项，结果与截图位于 ' + evidence + '。');
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

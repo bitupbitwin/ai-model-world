@@ -1,7 +1,9 @@
 import type { NextConfig } from 'next';
+import { contentBuildId } from './scripts/export/build-id';
 
 const nextConfig: NextConfig = {
   output: 'export',
+  generateBuildId: async () => contentBuildId(),
   /*
    * 开发服务器运行时执行 `next build` 会覆写同一个 .next 目录，导致 dev 立刻 404。
    * 让构建可以指到另一个目录：NEXT_DIST_DIR=.next-build npm run build
