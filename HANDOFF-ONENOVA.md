@@ -296,7 +296,7 @@ git merge upstream/main
 - 图片、字体等二进制保持原字节。`out/` 仍是可直接本地访问的未压缩构建产物，预压缩文件只放在新的 `.next-*` 目录。
 - 对象键保持原名，不加 `.gz`。文本上传时明确设置 `Content-Encoding: gzip`。HTML 为 `text/html; charset=utf-8`，RSC `.txt` 为 `text/plain; charset=utf-8`，JSON 为 `application/json; charset=utf-8`，其他类型按代码中的 MIME 表设置；二进制不设置 gzip 编码。
 - v2 清单的 `files` 是对象键到元信息的映射，逐个记录 `sha256`、`contentEncoding`、`contentType`、`cacheControl`。sha256 对应实际上传字节，任一指纹或响应头变化都会触发上传。没有清单或只有 v1 文件列表时，全部当前文件需要上传。
-- 本地计划保存可读的明文 JSON 清单；远端 `_onenova/models-deploy-manifest.json` 自身也是 gzip JSON，并设置相同的短缓存。读取远端 `ossutil cat` 时保留原始二进制，再按 gzip magic 解码，兼容旧明文 v1/v2 清单；本地旧清单也接受两种形式和 UTF-8 BOM。控制清单不嵌入自己的对象表，避免 sha256 自引用。
+- 本地计划保存可读的明文 JSON 清单；远端 `_onenova/models-deploy-manifest.json` 自身也是 gzip JSON，设置相同的短缓存，但以 `Content-Type: application/gzip` 存放、**不加 Content-Encoding**：带 Content-Encoding 时 ossutil 下载会自动解压并因 CRC 不一致失败，`ossutil cat` 还会在 stdout 混入耗时统计（2026-10-02 两次部署因此失败）。读取改用 `ossutil cp` 下载到临时文件，按 gzip magic 解码，兼容旧明文 v1/v2 清单；遇到旧格式清单的 CRC 错误时经 Bucket 公开地址用 curl 原样读取一次并以新格式重写；本地旧清单也接受两种形式和 UTF-8 BOM。控制清单不嵌入自己的对象表，避免 sha256 自引用。
 - 上传顺序为哈希资源 → RSC、JSON 及其他资源 → HTML。按阶段与相同的响应头组合分组，只有需要上传的文件才复制到各组暂存目录，保持相对路径，每组只调用一次 `cp --recursive --force`。无变化时不上传文件，也不更新控制清单。
 - 所有组上传成功后才清理旧文件。只删除上次本站清单记录、此次不存在的非哈希对象；历史哈希资源仍保留。v1 没有元信息的历史哈希只保留远端对象，不伪造它们的 sha256；v2 已知的历史哈希元信息继续保留。
 - 精灵文件按模型 ID 命名，名字中的八位发布日期不是内容哈希，使用短缓存。HTML、RSC、数据 JSON 和 sitemap 也保持短缓存；它们不会仅因文件名像哈希而被设成长缓存。
