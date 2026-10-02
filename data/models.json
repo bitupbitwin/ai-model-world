@@ -27,7 +27,7 @@
     {
       "id": "aime",
       "inEci": true,
-      "models": 197,
+      "models": 198,
       "randomBaseline": 0.1,
       "releaseDate": "2024-12-19",
       "scoreCeiling": 100,
@@ -255,7 +255,7 @@
     {
       "id": "chess_puzzles",
       "inEci": true,
-      "models": 158,
+      "models": 160,
       "randomBaseline": 4.96,
       "releaseDate": "2025-12-10",
       "scoreCeiling": 100,
@@ -579,7 +579,7 @@
     {
       "id": "gpqa_diamond",
       "inEci": true,
-      "models": 202,
+      "models": 203,
       "randomBaseline": 25,
       "releaseDate": "2023-11-20",
       "scoreCeiling": 100,
@@ -795,7 +795,7 @@
     {
       "id": "mystery_game_puzzles",
       "inEci": true,
-      "models": 96,
+      "models": 98,
       "randomBaseline": 9.22,
       "releaseDate": "2026-07-30",
       "scoreCeiling": 100,
@@ -939,7 +939,7 @@
     {
       "id": "simpleqa_verified",
       "inEci": true,
-      "models": 102,
+      "models": 103,
       "randomBaseline": 0,
       "releaseDate": "2025-09-09",
       "scoreCeiling": 100,
@@ -1225,7 +1225,7 @@
       "unit": "pct"
     }
   ],
-  "generatedAt": "2026-10-01T13:48:04.323Z",
+  "generatedAt": "2026-10-02T01:59:18.816Z",
   "models": [
     {
       "benchmarks": {
@@ -5201,7 +5201,7 @@
       "id": "alibaba/qwen3-30b-a3b-instruct-2507",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 32000,
+      "maxOutput": 235929,
       "modalities": {
         "input": [
           "text"
@@ -5219,8 +5219,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.04815,
-        "outputPerMTok": 0.19305
+        "inputPerMTok": 0.1,
+        "outputPerMTok": 0.3
       },
       "provenance": {
         "benchmarks.aime": "epoch.ai",
@@ -28442,7 +28442,7 @@
       "id": "deepseek/deepseek-chat-v3-0324",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 147456,
+      "maxOutput": 115200,
       "modalities": {
         "input": [
           "text"
@@ -35004,6 +35004,80 @@
       "retiredAt": null,
       "scores": [],
       "slug": "google-deep-research-preview-04-2026",
+      "trainingComputeFlop": null,
+      "vendorId": "google"
+    },
+    {
+      "benchmarks": {
+        "aime": null,
+        "arc_agi_2": null,
+        "eci": null,
+        "fiction_live": null,
+        "gpqa_diamond": null,
+        "swe_bench_pro": null,
+        "swe_bench_vendor": null,
+        "swe_bench_verified": null,
+        "webdev_arena_elo": null
+      },
+      "capabilities": {
+        "promptCaching": true,
+        "reasoning": true,
+        "structuredOutput": null,
+        "toolCall": true
+      },
+      "coding": [],
+      "contextWindow": 262144,
+      "firstSeenAt": "2026-10-02T01:59:18.816Z",
+      "id": "google/diffusiongemma-26b-a4b-it",
+      "knowledgeCutoff": "2025-01",
+      "license": "Apache-2.0",
+      "maxOutput": 32768,
+      "modalities": {
+        "input": [
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "name": "DiffusionGemma 26B A4B IT",
+      "openWeights": true,
+      "params": {
+        "activeB": 4,
+        "confidence": "exact",
+        "totalB": 25.82
+      },
+      "pricing": {
+        "cachedInputPerMTok": 0.5,
+        "inputPerMTok": 0.5,
+        "outputPerMTok": 0.5
+      },
+      "provenance": {
+        "capabilities.promptCaching": "derived",
+        "capabilities.reasoning": "models.dev",
+        "capabilities.toolCall": "models.dev",
+        "contextWindow": "models.dev",
+        "knowledgeCutoff": "models.dev",
+        "license": "huggingface",
+        "maxOutput": "models.dev",
+        "modalities": "models.dev",
+        "name": "models.dev",
+        "openWeights": "models.dev",
+        "params.activeB": "derived",
+        "params.totalB": "huggingface",
+        "pricing.cachedInputPerMTok": "models.dev",
+        "pricing.inputPerMTok": "models.dev",
+        "pricing.outputPerMTok": "models.dev",
+        "releaseDate": "models.dev",
+        "releaseDatePrecision": "models.dev",
+        "vendorId": "derived"
+      },
+      "releaseDate": "2026-06-09",
+      "releaseDatePrecision": "day",
+      "retiredAt": null,
+      "scores": [],
+      "slug": "google-diffusiongemma-26b-a4b-it",
       "trainingComputeFlop": null,
       "vendorId": "google"
     },
@@ -43706,7 +43780,7 @@
         "totalB": 25.81
       },
       "pricing": {
-        "cachedInputPerMTok": 0.049,
+        "cachedInputPerMTok": 0.0425,
         "inputPerMTok": 0.1,
         "outputPerMTok": 0.34
       },
@@ -50353,7 +50427,7 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.4,
+        "inputPerMTok": 0.55,
         "outputPerMTok": 2.2
       },
       "provenance": {
@@ -53443,8 +53517,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.34065,
-        "outputPerMTok": 0.4542
+        "inputPerMTok": 0.33894,
+        "outputPerMTok": 0.45192
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
@@ -62729,7 +62803,7 @@
         "webdev_arena_elo": null
       },
       "capabilities": {
-        "promptCaching": true,
+        "promptCaching": false,
         "reasoning": true,
         "structuredOutput": null,
         "toolCall": false
@@ -62758,9 +62832,9 @@
         "totalB": null
       },
       "pricing": {
-        "cachedInputPerMTok": 0.025,
-        "inputPerMTok": 0.05,
-        "outputPerMTok": 0.15
+        "cachedInputPerMTok": null,
+        "inputPerMTok": 0.2,
+        "outputPerMTok": 0.2
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
@@ -62771,9 +62845,8 @@
         "modalities": "models.dev",
         "name": "models.dev",
         "openWeights": "models.dev",
-        "pricing.cachedInputPerMTok": "models.dev",
-        "pricing.inputPerMTok": "models.dev",
-        "pricing.outputPerMTok": "models.dev",
+        "pricing.inputPerMTok": "litellm",
+        "pricing.outputPerMTok": "litellm",
         "releaseDate": "models.dev",
         "releaseDatePrecision": "models.dev",
         "vendorId": "derived"
@@ -77702,6 +77775,14 @@
         },
         {
           "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 31,
+          "source": "epoch.ai",
+          "sourceUrl": null,
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
           "league": "critpt",
           "score": 19.43,
           "source": "epoch.ai",
@@ -77770,6 +77851,14 @@
           "score": 44.49,
           "source": "epoch.ai",
           "sourceUrl": "https://conceptualreasoning.ai/lmca",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "mystery_game_puzzles",
+          "score": 7,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -86869,6 +86958,76 @@
         "webdev_arena_elo": null
       },
       "capabilities": {
+        "promptCaching": true,
+        "reasoning": null,
+        "structuredOutput": null,
+        "toolCall": null
+      },
+      "coding": [],
+      "contextWindow": 1048576,
+      "firstSeenAt": "2026-10-02T01:59:18.816Z",
+      "id": "unbiased/pareto-26.10-preview",
+      "knowledgeCutoff": null,
+      "license": null,
+      "maxOutput": 131072,
+      "modalities": {
+        "input": [
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "name": "Pareto 26.10 Preview",
+      "openWeights": null,
+      "params": {
+        "activeB": null,
+        "confidence": "estimated",
+        "sizeTier": 2,
+        "sizeTierBasis": "price",
+        "totalB": null
+      },
+      "pricing": {
+        "cachedInputPerMTok": 0.03,
+        "inputPerMTok": 0.8,
+        "outputPerMTok": 3.2
+      },
+      "provenance": {
+        "capabilities.promptCaching": "derived",
+        "contextWindow": "openrouter",
+        "maxOutput": "openrouter",
+        "modalities": "openrouter",
+        "name": "derived",
+        "params.sizeTier": "derived",
+        "pricing.cachedInputPerMTok": "litellm",
+        "pricing.inputPerMTok": "litellm",
+        "pricing.outputPerMTok": "litellm",
+        "releaseDate": "openrouter",
+        "releaseDatePrecision": "openrouter",
+        "vendorId": "derived"
+      },
+      "releaseDate": "2026-10-01",
+      "releaseDatePrecision": "day",
+      "retiredAt": null,
+      "scores": [],
+      "slug": "unbiased-pareto-26-10-preview",
+      "trainingComputeFlop": null,
+      "vendorId": "unbiased"
+    },
+    {
+      "benchmarks": {
+        "aime": null,
+        "arc_agi_2": null,
+        "eci": null,
+        "fiction_live": null,
+        "gpqa_diamond": null,
+        "swe_bench_pro": null,
+        "swe_bench_vendor": null,
+        "swe_bench_verified": null,
+        "webdev_arena_elo": null
+      },
+      "capabilities": {
         "promptCaching": false,
         "reasoning": null,
         "structuredOutput": null,
@@ -90669,11 +90828,11 @@
     },
     {
       "benchmarks": {
-        "aime": null,
+        "aime": 98.06,
         "arc_agi_2": null,
         "eci": null,
         "fiction_live": null,
-        "gpqa_diamond": null,
+        "gpqa_diamond": 92.74,
         "swe_bench_pro": null,
         "swe_bench_vendor": null,
         "swe_bench_verified": null,
@@ -90758,6 +90917,8 @@
         "outputPerMTok": 6
       },
       "provenance": {
+        "benchmarks.aime": "epoch.ai",
+        "benchmarks.gpqa_diamond": "epoch.ai",
         "capabilities.promptCaching": "derived",
         "capabilities.reasoning": "models.dev",
         "capabilities.structuredOutput": "models.dev",
@@ -90782,6 +90943,22 @@
       "releaseDatePrecision": "day",
       "retiredAt": null,
       "scores": [
+        {
+          "attribution": "third-party",
+          "league": "aime",
+          "score": 98.06,
+          "source": "epoch.ai",
+          "sourceUrl": "https://epoch.ai/benchmarks",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 38,
+          "source": "epoch.ai",
+          "sourceUrl": null,
+          "unit": "pct"
+        },
         {
           "attribution": "third-party",
           "league": "critpt",
@@ -90824,6 +91001,14 @@
         },
         {
           "attribution": "third-party",
+          "league": "gpqa_diamond",
+          "score": 92.74,
+          "source": "epoch.ai",
+          "sourceUrl": "https://epoch.ai/benchmarks",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
           "league": "livebench_agentic_coding",
           "score": 53.99,
           "source": "livebench",
@@ -90840,10 +91025,26 @@
         },
         {
           "attribution": "third-party",
+          "league": "mystery_game_puzzles",
+          "score": 29,
+          "source": "epoch.ai",
+          "sourceUrl": null,
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
           "league": "proofbench",
           "score": 34,
           "source": "epoch.ai",
           "sourceUrl": "https://www.vals.ai/benchmarks/proof_bench",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "simpleqa_verified",
+          "score": 56,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -92960,7 +93161,7 @@
         "totalB": 107.71
       },
       "pricing": {
-        "cachedInputPerMTok": 0.055,
+        "cachedInputPerMTok": 0.05,
         "inputPerMTok": 0.3,
         "outputPerMTok": 0.9
       },
@@ -92977,7 +93178,7 @@
         "name": "models.dev",
         "openWeights": "models.dev",
         "params.totalB": "huggingface",
-        "pricing.cachedInputPerMTok": "litellm",
+        "pricing.cachedInputPerMTok": "openrouter",
         "pricing.inputPerMTok": "models.dev",
         "pricing.outputPerMTok": "models.dev",
         "releaseDate": "models.dev",
@@ -95855,43 +96056,43 @@
   ],
   "sources": {
     "derived": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
       "note": "管线内推导的字段（规模档位、缓存能力、退役判定）",
       "ok": true
     },
     "epoch.ai": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
-      "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 326 行；去重后 414 个模型实体；合规拦截 1 个文件",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
+      "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 326 行；去重后 415 个模型实体；合规拦截 1 个文件",
       "ok": true
     },
     "huggingface": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
-      "note": "请求 164 个开源模型，成功 160，失败 4",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
+      "note": "请求 165 个开源模型，成功 161，失败 4",
       "ok": true
     },
     "litellm": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
-      "note": "4438 条（对话类 3544 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
+      "note": "4452 条（对话类 3555 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
       "note": "Apache-2.0 / DATASHEET 明文「no copyrights on the data」。采用 6 个同期 release（2026-06-25, 2026-01-08, 2025-12-23, 2025-11-25, 2025-05-30, 2025-04-25）；跳过题目集换代前的 5 个（2024-06-24, 2024-07-26, 2024-08-31, 2024-11-25, 2025-04-02）——实测跨这个断点同一模型的 Coding 分中位差 27.6 分，不可同池。",
       "ok": true
     },
     "lmarena": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
       "note": "7/7 个分榜，共 321 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
-      "note": "models.json 434 条；api.json 225 provider / 8339 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
+      "note": "models.json 435 条；api.json 225 provider / 8352 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
       "ok": true
     },
     "openrouter": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
-      "note": "462 条；已剔除 artificial_analysis 193 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
+      "note": "464 条；已剔除 artificial_analysis 193 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
@@ -95900,8 +96101,8 @@
       "ok": true
     },
     "vercel-gateway": {
-      "fetchedAt": "2026-10-01T13:48:04.323Z",
-      "note": "396 条（language 267 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-02T01:59:18.816Z",
+      "note": "406 条（language 267 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }
   },
