@@ -1,6 +1,6 @@
 {
   "_note": "闭源模型的「体型」代理指标：输出价格档位 × 厂商命名档位合成的 1–5 档规模。这份档位已经并进 data/models.json 的 params.sizeTier / params.sizeTierBasis，本文件只作为独立索引保留，方便离线核对。",
-  "generatedAt": "2026-10-02T14:37:17.030Z",
+  "generatedAt": "2026-10-02T18:40:22.543Z",
   "tiers": {
     "aion-labs/aion-2.0": {
       "basis": "price",
@@ -1293,6 +1293,10 @@
     "xai/grok-build-0.1": {
       "basis": "price",
       "tier": 2
+    },
+    "xai/grok-imagine-video-1.5-lite": {
+      "basis": "naming",
+      "tier": 1
     },
     "xiaomi/mimo-v2-omni": {
       "basis": "price",
