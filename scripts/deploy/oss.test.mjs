@@ -35,6 +35,12 @@ function walk(dir, prefix = '') {
     ? walk(path.join(dir, entry.name), prefix + entry.name + '/') : [prefix + entry.name]);
 }
 function oldManifest(files, extras = {}) { return { version: 1, owner: siteOwner, bucket: env.OSS_BUCKET, files, ...extras }; }
+// 清单作为普通 gzip 文件写入：不带 Content-Encoding，否则 ossutil 下载时会自动解压并 CRC 校验失败
+function assertManifestWrite(args) {
+  assert.equal(args[2], `oss://${env.OSS_BUCKET}/${manifestKey}`);
+  assert.equal(args.includes('--content-encoding'), false);
+  assert.equal(args[args.indexOf('--content-type') + 1], 'application/gzip');
+}
 function isManifestDownload(args) { return args[0] === 'cp' && args[1].startsWith('oss://'); }
 function missingManifest(stream = 'stderr') { throw Object.assign(new Error('对象不存在'), { [stream]: 'Error: NoSuchKey' }); }
 function harness(outDir, previous = null, failGroup = 0) {
@@ -123,8 +129,7 @@ test('分组 cp 保持对象键和正确响应头，先哈希资源、再数据�
   assert.equal(htmlGroup.length, 1); assert.equal(htmlGroup[0].keys.length, 2, '同一头组合一次上传多个文件');
   assert.equal(h.calls.at(-1)[2], `oss://${env.OSS_BUCKET}/${manifestKey}`);
   assert.equal(h.manifest().version, 2);
-  assert.ok(h.calls.at(-1).includes('--content-encoding'));
-  assert.equal(h.calls.at(-1)[h.calls.at(-1).indexOf('--content-encoding') + 1], 'gzip');
+  assertManifestWrite(h.calls.at(-1));
 });
 
 test('v2 无变化上传零个文件，连控制清单也不重复上传', (t) => {
@@ -154,8 +159,7 @@ test('v1 清单兼容：不猜指纹，当前对象全部上传，只清理记�
   const deletion = h.calls.findIndex((args) => args[0] === 'rm');
   assert.ok(h.calls.slice(deletion).every((args) => !args.includes('--recursive')));
   assert.equal(h.manifest().version, 2);
-  assert.ok(h.calls.at(-1).includes('--content-encoding'));
-  assert.equal(h.calls.at(-1)[h.calls.at(-1).indexOf('--content-encoding') + 1], 'gzip');
+  assertManifestWrite(h.calls.at(-1));
 });
 
 test('v2 仍保留已知历史哈希指纹；不清理清单外对象', (t) => {
@@ -225,4 +229,27 @@ test('读取 gzip v2 远端清单时保持原始二进制字节，兼容旧明�
   assert.deepEqual(decodeManifest('\uFEFF' + JSON.stringify(previous)), previous);
   const h = harness(outDir, compressed); assert.equal(h.result().uploaded, 0); assert.equal(h.calls.length, 1);
   assert.throws(() => decodeManifest(Buffer.from([0x1f, 0x8b, 0])));
+});
+
+test('旧格式清单（带 Content-Encoding）CRC 校验失败时经公开地址读取，并以新格式重写', (t) => {
+  const { root, outDir } = fixture(t), previous = fullManifest(outDir, root);
+  const calls = [], urls = [], logs = []; let written;
+  const result = deploy({ env, outDir, log: (line) => logs.push(line),
+    fetchPublic: (url) => { urls.push(url); return encodeManifest(previous); },
+    run: (args) => {
+      calls.push(args);
+      if (isManifestDownload(args)) throw Object.assign(new Error('Command failed'), { stderr: Buffer.from('Error: crc is inconsistent, client 1, server 2') });
+      if (args[0] === 'cp') written = decodeManifest(fs.readFileSync(args[1]));
+    } });
+  assert.equal(result.uploaded, 0);
+  assert.deepEqual(urls, [`https://${env.OSS_BUCKET}.oss-cn-shanghai.aliyuncs.com/${manifestKey}`]);
+  assertManifestWrite(calls.at(-1));
+  assert.deepEqual(written, previous);
+  assert.ok(logs.some((line) => line.includes('旧格式')));
+});
+
+test('清单下载的其他错误照常抛出，不走公开地址', (t) => {
+  const { outDir } = fixture(t);
+  assert.throws(() => deploy({ env, outDir, log: () => {}, fetchPublic: () => assert.fail('不应读取公开地址'),
+    run: (args) => { if (isManifestDownload(args)) throw Object.assign(new Error('拒绝访问'), { stderr: 'AccessDenied' }); } }), /拒绝访问/);
 });

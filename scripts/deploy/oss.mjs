@@ -17,7 +17,7 @@ function removeStage(stage, parent) {
 }
 
 /** run 可注入离线替身；缺少 Secrets 时不读取产物，也不调用 OSS。 */
-export function deploy({ env = process.env, outDir = path.resolve('out'), run, log = console.log } = {}) {
+export function deploy({ env = process.env, outDir = path.resolve('out'), run, fetchPublic, log = console.log } = {}) {
   const missing = requiredSecrets.filter((name) => !env[name]);
   if (missing.length) {
     log(`尚未配置 Secrets：${missing.join('、')}，成功跳过部署。`);
@@ -34,13 +34,27 @@ export function deploy({ env = process.env, outDir = path.resolve('out'), run, l
     stdio: capture ? ['ignore', 'pipe', 'pipe'] : 'inherit',
   }));
   const target = `oss://${env.OSS_BUCKET}/`;
+  // 旧清单带 Content-Encoding: gzip，ossutil 下载时会自动解压，再按压缩字节校验 CRC 而失败。
+  // 遇到这种旧清单时，经 Bucket 公开地址原样读取一次，随后以不带 Content-Encoding 的新格式重写。
+  const readPublic = fetchPublic ?? ((url) => execFileSync('curl', ['-fsS', '--max-time', '60', url], { maxBuffer: 16 * 1024 * 1024 }));
+  const publicUrl = `https://${env.OSS_BUCKET}.oss-${endpoint[1]}.aliyuncs.com/${manifestKey}`;
   let previous = null;
-  // 用 cp 下载到文件再读：ossutil cat 会在对象字节后向 stdout 追加耗时统计，gzip 清单因此解压失败。
+  let legacyManifest = false;
+  // 用 cp 下载到文件再读，不用 cat：cat 的 stdout 会混入对象内容以外的统计信息。
   const download = fs.mkdtempSync(path.join(os.tmpdir(), 'onenova-manifest-'));
   try {
     const local = path.join(download, 'manifest');
-    invoke(['cp', target + manifestKey, local, '--force'], true);
-    previous = validateManifest(decodeManifest(fs.readFileSync(local)), env.OSS_BUCKET);
+    let bytes;
+    try {
+      invoke(['cp', target + manifestKey, local, '--force'], true);
+      bytes = fs.readFileSync(local);
+    } catch (error) {
+      if (!/crc is inconsistent/i.test(String(error.stderr ?? '') + String(error.stdout ?? '') + String(error.message))) throw error;
+      log('远端清单是旧格式（带 Content-Encoding），改经公开地址原样读取，本次部署后改写为新格式。');
+      bytes = readPublic(publicUrl);
+      legacyManifest = true;
+    }
+    previous = validateManifest(decodeManifest(bytes), env.OSS_BUCKET);
   } catch (error) {
     if (!/\bNoSuchKey\b/.test(String(error.stderr ?? '') + String(error.stdout ?? ''))) throw error;
     log('首次部署：没有本站历史清单，不删除 Bucket 内任何已有文件。');
@@ -69,11 +83,12 @@ export function deploy({ env = process.env, outDir = path.resolve('out'), run, l
     }
     // 全部组上传成功后，仅删历史本站清单中的非哈希旧对象。
     for (const key of plan.stale) invoke(['rm', target + key, '--force']);
-    if (plan.manifestChanged) {
+    if (plan.manifestChanged || legacyManifest) {
       const localManifest = path.join(stage, 'manifest.json');
       fs.writeFileSync(localManifest, encodeManifest(plan.manifest));
+      // 清单只给部署脚本读，作为普通 gzip 文件存放；不加 Content-Encoding，ossutil 才会原样下载。
       invoke(['cp', localManifest, target + manifestKey, '--force', '--content-type',
-        'application/json; charset=utf-8', '--content-encoding', 'gzip', '--cache-control', shortCache]);
+        'application/gzip', '--cache-control', shortCache]);
     }
     log(`部署完成：增量上传 ${plan.report.待上传文件数} 个文件 / ${plan.report.待上传文件字节数} 字节，清理 ${plan.stale.length} 个本站旧文件。`);
     return { skipped: false, uploaded: plan.report.待上传文件数, uploadedBytes: plan.report.待上传文件字节数, deleted: plan.stale.length };
