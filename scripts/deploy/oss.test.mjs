@@ -35,13 +35,16 @@ function walk(dir, prefix = '') {
     ? walk(path.join(dir, entry.name), prefix + entry.name + '/') : [prefix + entry.name]);
 }
 function oldManifest(files, extras = {}) { return { version: 1, owner: siteOwner, bucket: env.OSS_BUCKET, files, ...extras }; }
+function isManifestDownload(args) { return args[0] === 'cp' && args[1].startsWith('oss://'); }
 function missingManifest(stream = 'stderr') { throw Object.assign(new Error('对象不存在'), { [stream]: 'Error: NoSuchKey' }); }
 function harness(outDir, previous = null, failGroup = 0) {
   const calls = [], uploads = []; let manifest; let groupNumber = 0;
   const result = () => deploy({ env, outDir, log: () => {}, run: (args) => {
     calls.push(args);
-    if (args[0] === 'cat') { if (!previous) missingManifest(); return Buffer.isBuffer(previous) ? previous : JSON.stringify(previous); }
-    if (args[0] === 'cp' && args.includes('--recursive')) {
+    if (isManifestDownload(args)) {
+      if (!previous) missingManifest();
+      fs.writeFileSync(args[2], Buffer.isBuffer(previous) ? previous : JSON.stringify(previous));
+    } else if (args[0] === 'cp' && args.includes('--recursive')) {
       groupNumber += 1;
       if (groupNumber === failGroup) throw new Error('模拟上传失败');
       const keys = walk(args[1]);
@@ -127,7 +130,8 @@ test('分组 cp 保持对象键和正确响应头，先哈希资源、再数据�
 test('v2 无变化上传零个文件，连控制清单也不重复上传', (t) => {
   const { root, outDir } = fixture(t), previous = fullManifest(outDir, root), h = harness(outDir, previous);
   assert.deepEqual(h.result(), { skipped: false, uploaded: 0, uploadedBytes: 0, deleted: 0 });
-  assert.deepEqual(h.calls.map((args) => args[0]), ['cat']);
+  assert.deepEqual(h.calls.map((args) => args[0]), ['cp']);
+  assert.ok(isManifestDownload(h.calls[0]));
 });
 
 test('内容变化仅上传该对象；响应头单独变化也会重新上传', (t) => {
@@ -183,13 +187,13 @@ test('拒绝越界 Bucket、外站清单、危险路径、坏指纹、坏 JSON �
     oldManifest({ 'index.html': { ...meta, contentType: 'text/html\r\n注入' } }, { version: 2 })]) {
     const h = harness(outDir, previous); assert.throws(h.result); assert.equal(h.calls.length, 1);
   }
-  assert.throws(() => deploy({ env, outDir, run: () => '{' }));
+  assert.throws(() => deploy({ env, outDir, run: (args) => { if (isManifestDownload(args)) fs.writeFileSync(args[2], '{'); } }));
   assert.throws(() => deploy({ env, outDir, run: () => { throw Object.assign(new Error('拒绝访问'), { stderr: 'AccessDenied' }); } }), /拒绝访问/);
 });
 
 test('NoSuchKey 在 stdout 时仍按首次部署处理', (t) => {
   const { outDir } = fixture(t);
-  const result = deploy({ env, outDir, log: () => {}, run: (args) => { if (args[0] === 'cat') missingManifest('stdout'); } });
+  const result = deploy({ env, outDir, log: () => {}, run: (args) => { if (isManifestDownload(args)) missingManifest('stdout'); } });
   assert.equal(result.deleted, 0);
 });
 

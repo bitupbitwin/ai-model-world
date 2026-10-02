@@ -1,6 +1,7 @@
 /** 审核后才由工作流调用；按上传字节和响应头增量部署，先资源、后数据、最后 HTML。 */
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createPlan, decodeManifest, encodeManifest, manifestKey, prepareSite, serializeManifest, shortCache, validateManifest } from './prepare.mjs';
@@ -34,11 +35,17 @@ export function deploy({ env = process.env, outDir = path.resolve('out'), run, l
   }));
   const target = `oss://${env.OSS_BUCKET}/`;
   let previous = null;
+  // 用 cp 下载到文件再读：ossutil cat 会在对象字节后向 stdout 追加耗时统计，gzip 清单因此解压失败。
+  const download = fs.mkdtempSync(path.join(os.tmpdir(), 'onenova-manifest-'));
   try {
-    previous = validateManifest(decodeManifest(invoke(['cat', target + manifestKey], true)), env.OSS_BUCKET);
+    const local = path.join(download, 'manifest');
+    invoke(['cp', target + manifestKey, local, '--force'], true);
+    previous = validateManifest(decodeManifest(fs.readFileSync(local)), env.OSS_BUCKET);
   } catch (error) {
     if (!/\bNoSuchKey\b/.test(String(error.stderr ?? '') + String(error.stdout ?? ''))) throw error;
     log('首次部署：没有本站历史清单，不删除 Bucket 内任何已有文件。');
+  } finally {
+    fs.rmSync(download, { recursive: true, force: true });
   }
   outDir = path.resolve(outDir);
   const parent = path.dirname(outDir);
