@@ -135,7 +135,7 @@
     {
       "id": "arena_image_to_video",
       "inEci": false,
-      "models": 4,
+      "models": 5,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -171,7 +171,7 @@
     {
       "id": "arena_text_to_video",
       "inEci": false,
-      "models": 4,
+      "models": 5,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -183,7 +183,7 @@
     {
       "id": "arena_video_edit",
       "inEci": false,
-      "models": 1,
+      "models": 2,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -1225,7 +1225,7 @@
       "unit": "pct"
     }
   ],
-  "generatedAt": "2026-10-05T21:13:30.455Z",
+  "generatedAt": "2026-10-06T08:05:06.646Z",
   "models": [
     {
       "benchmarks": {
@@ -2465,7 +2465,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1366.4,
+          "score": 1368.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -2473,7 +2473,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1227.6,
+          "score": 1222.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -3974,7 +3974,7 @@
       "id": "alibaba/qwen3-235b-a22b-2507",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 235929,
+      "maxOutput": 16384,
       "modalities": {
         "input": [
           "text"
@@ -5201,7 +5201,7 @@
       "id": "alibaba/qwen3-30b-a3b-instruct-2507",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 32000,
+      "maxOutput": 235929,
       "modalities": {
         "input": [
           "text"
@@ -5219,8 +5219,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.04815,
-        "outputPerMTok": 0.19305
+        "inputPerMTok": 0.1,
+        "outputPerMTok": 0.3
       },
       "provenance": {
         "benchmarks.aime": "epoch.ai",
@@ -8451,7 +8451,7 @@
         "totalB": 403.4
       },
       "pricing": {
-        "cachedInputPerMTok": 0.225,
+        "cachedInputPerMTok": 0.22,
         "inputPerMTok": 0.6,
         "outputPerMTok": 3.6
       },
@@ -26091,6 +26091,140 @@
         "webdev_arena_elo": null
       },
       "capabilities": {
+        "promptCaching": null,
+        "reasoning": false,
+        "structuredOutput": null,
+        "toolCall": false
+      },
+      "coding": [],
+      "contextWindow": null,
+      "firstSeenAt": "2026-10-06T08:05:06.646Z",
+      "id": "bytedance-seed/seedance-2.0",
+      "knowledgeCutoff": null,
+      "license": null,
+      "maxOutput": null,
+      "modalities": {
+        "input": [
+          "audio",
+          "image",
+          "text",
+          "video"
+        ],
+        "output": [
+          "audio",
+          "video"
+        ]
+      },
+      "name": "Seedance 2.0",
+      "openWeights": false,
+      "params": {
+        "activeB": null,
+        "confidence": "unknown",
+        "totalB": null
+      },
+      "pricing": {
+        "cachedInputPerMTok": null,
+        "inputPerMTok": null,
+        "outputPerMTok": null
+      },
+      "provenance": {
+        "capabilities.reasoning": "models.dev",
+        "capabilities.toolCall": "models.dev",
+        "modalities": "models.dev",
+        "name": "models.dev",
+        "openWeights": "models.dev",
+        "releaseDate": "models.dev",
+        "releaseDatePrecision": "models.dev",
+        "vendorId": "derived"
+      },
+      "releaseDate": "2026-02-12",
+      "releaseDatePrecision": "day",
+      "retiredAt": null,
+      "scores": [],
+      "slug": "bytedance-seed-seedance-2-0",
+      "trainingComputeFlop": null,
+      "vendorId": "bytedance-seed"
+    },
+    {
+      "benchmarks": {
+        "aime": null,
+        "arc_agi_2": null,
+        "eci": null,
+        "fiction_live": null,
+        "gpqa_diamond": null,
+        "swe_bench_pro": null,
+        "swe_bench_vendor": null,
+        "swe_bench_verified": null,
+        "webdev_arena_elo": null
+      },
+      "capabilities": {
+        "promptCaching": null,
+        "reasoning": false,
+        "structuredOutput": null,
+        "toolCall": false
+      },
+      "coding": [],
+      "contextWindow": null,
+      "firstSeenAt": "2026-10-06T08:05:06.646Z",
+      "id": "bytedance-seed/seedance-2.5",
+      "knowledgeCutoff": null,
+      "license": null,
+      "maxOutput": null,
+      "modalities": {
+        "input": [
+          "audio",
+          "image",
+          "text",
+          "video"
+        ],
+        "output": [
+          "audio",
+          "video"
+        ]
+      },
+      "name": "Seedance 2.5",
+      "openWeights": false,
+      "params": {
+        "activeB": null,
+        "confidence": "unknown",
+        "totalB": null
+      },
+      "pricing": {
+        "cachedInputPerMTok": null,
+        "inputPerMTok": null,
+        "outputPerMTok": null
+      },
+      "provenance": {
+        "capabilities.reasoning": "models.dev",
+        "capabilities.toolCall": "models.dev",
+        "modalities": "models.dev",
+        "name": "models.dev",
+        "openWeights": "models.dev",
+        "releaseDate": "models.dev",
+        "releaseDatePrecision": "models.dev",
+        "vendorId": "derived"
+      },
+      "releaseDate": "2026-07-31",
+      "releaseDatePrecision": "day",
+      "retiredAt": null,
+      "scores": [],
+      "slug": "bytedance-seed-seedance-2-5",
+      "trainingComputeFlop": null,
+      "vendorId": "bytedance-seed"
+    },
+    {
+      "benchmarks": {
+        "aime": null,
+        "arc_agi_2": null,
+        "eci": null,
+        "fiction_live": null,
+        "gpqa_diamond": null,
+        "swe_bench_pro": null,
+        "swe_bench_vendor": null,
+        "swe_bench_verified": null,
+        "webdev_arena_elo": null
+      },
+      "capabilities": {
         "promptCaching": true,
         "reasoning": null,
         "structuredOutput": null,
@@ -31654,7 +31788,7 @@
       "id": "deepseek/deepseek-v3.1-terminus",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 65536,
+      "maxOutput": 147456,
       "modalities": {
         "input": [
           "text"
@@ -31685,7 +31819,7 @@
         "modalities": "openrouter",
         "name": "derived",
         "params.sizeTier": "derived",
-        "pricing.cachedInputPerMTok": "openrouter",
+        "pricing.cachedInputPerMTok": "vercel-gateway",
         "pricing.inputPerMTok": "litellm",
         "pricing.outputPerMTok": "litellm",
         "releaseDate": "vercel-gateway",
@@ -34829,7 +34963,7 @@
         "totalB": 1623.5
       },
       "pricing": {
-        "cachedInputPerMTok": 0.05,
+        "cachedInputPerMTok": 0.047907,
         "inputPerMTok": 1.32,
         "outputPerMTok": 3.96
       },
@@ -35178,8 +35312,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": 0.006,
-        "inputPerMTok": 0.22,
-        "outputPerMTok": 0.66
+        "inputPerMTok": 0.21,
+        "outputPerMTok": 0.84
       },
       "provenance": {
         "benchmarks.eci": "epoch.ai",
@@ -36448,7 +36582,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1293.1,
+          "score": 1293.2,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -36456,7 +36590,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1150.2,
+          "score": 1150.3,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39092,7 +39226,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1390.2,
+          "score": 1389.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39100,7 +39234,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1247.4,
+          "score": 1247.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39185,7 +39319,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1390.2,
+          "score": 1389.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39193,7 +39327,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1247.4,
+          "score": 1247.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39705,7 +39839,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1387.4,
+          "score": 1387.3,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39713,7 +39847,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1261.2,
+          "score": 1261.1,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39799,7 +39933,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1387.4,
+          "score": 1387.3,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39807,7 +39941,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1261.2,
+          "score": 1261.1,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -40107,7 +40241,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1313.6,
+          "score": 1313.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -40115,7 +40249,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1250,
+          "score": 1250.3,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -47393,7 +47527,7 @@
         "webdev_arena_elo": null
       },
       "capabilities": {
-        "promptCaching": true,
+        "promptCaching": false,
         "reasoning": false,
         "structuredOutput": null,
         "toolCall": true
@@ -47421,7 +47555,7 @@
         "totalB": 70.55
       },
       "pricing": {
-        "cachedInputPerMTok": 0.8,
+        "cachedInputPerMTok": null,
         "inputPerMTok": 0.72,
         "outputPerMTok": 0.72
       },
@@ -47439,7 +47573,6 @@
         "name": "models.dev",
         "openWeights": "models.dev",
         "params.totalB": "huggingface",
-        "pricing.cachedInputPerMTok": "models.dev",
         "pricing.inputPerMTok": "models.dev",
         "pricing.outputPerMTok": "models.dev",
         "releaseDate": "models.dev",
@@ -51066,6 +51199,100 @@
       "retiredAt": null,
       "scores": [],
       "slug": "minimax-minimax-01",
+      "trainingComputeFlop": null,
+      "vendorId": "minimax"
+    },
+    {
+      "benchmarks": {
+        "aime": null,
+        "arc_agi_2": null,
+        "eci": null,
+        "fiction_live": null,
+        "gpqa_diamond": null,
+        "swe_bench_pro": null,
+        "swe_bench_vendor": null,
+        "swe_bench_verified": null,
+        "webdev_arena_elo": null
+      },
+      "capabilities": {
+        "promptCaching": null,
+        "reasoning": false,
+        "structuredOutput": null,
+        "toolCall": false
+      },
+      "coding": [],
+      "contextWindow": null,
+      "firstSeenAt": "2026-10-06T08:05:06.646Z",
+      "id": "minimax/minimax-h3",
+      "knowledgeCutoff": null,
+      "license": null,
+      "maxOutput": null,
+      "modalities": {
+        "input": [
+          "audio",
+          "image",
+          "text",
+          "video"
+        ],
+        "output": [
+          "audio",
+          "video"
+        ]
+      },
+      "name": "MiniMax H3",
+      "openWeights": true,
+      "params": {
+        "activeB": null,
+        "confidence": "exact",
+        "totalB": 33.11
+      },
+      "pricing": {
+        "cachedInputPerMTok": null,
+        "inputPerMTok": null,
+        "outputPerMTok": null
+      },
+      "provenance": {
+        "capabilities.reasoning": "models.dev",
+        "capabilities.toolCall": "models.dev",
+        "modalities": "models.dev",
+        "name": "models.dev",
+        "openWeights": "models.dev",
+        "params.totalB": "huggingface",
+        "releaseDate": "models.dev",
+        "releaseDatePrecision": "models.dev",
+        "scores": "derived",
+        "vendorId": "derived"
+      },
+      "releaseDate": "2026-07-31",
+      "releaseDatePrecision": "day",
+      "retiredAt": null,
+      "scores": [
+        {
+          "attribution": "third-party",
+          "league": "arena_image_to_video",
+          "score": 1495.4,
+          "source": "lmarena",
+          "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+          "unit": "elo"
+        },
+        {
+          "attribution": "third-party",
+          "league": "arena_text_to_video",
+          "score": 1460.3,
+          "source": "lmarena",
+          "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+          "unit": "elo"
+        },
+        {
+          "attribution": "third-party",
+          "league": "arena_video_edit",
+          "score": 1392.2,
+          "source": "lmarena",
+          "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+          "unit": "elo"
+        }
+      ],
+      "slug": "minimax-minimax-h3",
       "trainingComputeFlop": null,
       "vendorId": "minimax"
     },
@@ -79783,7 +80010,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1115.7,
+          "score": 1115.6,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -79865,7 +80092,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1369.6,
+          "score": 1369.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -79873,7 +80100,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1238.5,
+          "score": 1238,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -79954,7 +80181,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1461.3,
+          "score": 1461.8,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -79962,7 +80189,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1383,
+          "score": 1383.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80043,7 +80270,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1478.5,
+          "score": 1480.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80051,7 +80278,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1400.9,
+          "score": 1397.1,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80132,7 +80359,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1522.4,
+          "score": 1523.6,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80140,7 +80367,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1423.6,
+          "score": 1424.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92233,7 +92460,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1426.9,
+          "score": 1425.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92241,7 +92468,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1300.8,
+          "score": 1296.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92316,7 +92543,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1329.5,
+          "score": 1329,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92324,7 +92551,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1170.3,
+          "score": 1169.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -97170,42 +97397,42 @@
   ],
   "sources": {
     "derived": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
       "note": "管线内推导的字段（规模档位、缓存能力、退役判定）",
       "ok": true
     },
     "epoch.ai": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
       "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 328 行；去重后 417 个模型实体；合规拦截 1 个文件",
       "ok": true
     },
     "huggingface": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
-      "note": "请求 170 个开源模型，成功 166，失败 4",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
+      "note": "请求 171 个开源模型，成功 167，失败 4",
       "ok": true
     },
     "litellm": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
-      "note": "4472 条（对话类 3557 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
+      "note": "4479 条（对话类 3563 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
       "note": "Apache-2.0 / DATASHEET 明文「no copyrights on the data」。采用 6 个同期 release（2026-06-25, 2026-01-08, 2025-12-23, 2025-11-25, 2025-05-30, 2025-04-25）；跳过题目集换代前的 5 个（2024-06-24, 2024-07-26, 2024-08-31, 2024-11-25, 2025-04-02）——实测跨这个断点同一模型的 Coding 分中位差 27.6 分，不可同池。",
       "ok": true
     },
     "lmarena": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
-      "note": "7/7 个分榜，共 321 条 Arena 分",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
+      "note": "7/7 个分榜，共 323 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
-      "note": "models.json 441 条；api.json 226 provider / 8396 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
+      "note": "models.json 444 条；api.json 226 provider / 8389 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
       "ok": true
     },
     "openrouter": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
       "note": "464 条；已剔除 artificial_analysis 290 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
@@ -97215,8 +97442,8 @@
       "ok": true
     },
     "vercel-gateway": {
-      "fetchedAt": "2026-10-05T21:13:30.455Z",
-      "note": "407 条（language 267 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-06T08:05:06.646Z",
+      "note": "409 条（language 267 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }
   },
