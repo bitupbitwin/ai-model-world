@@ -123,7 +123,7 @@
     {
       "id": "arena_image_edit",
       "inEci": false,
-      "models": 14,
+      "models": 15,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -159,7 +159,7 @@
     {
       "id": "arena_text_to_image",
       "inEci": false,
-      "models": 14,
+      "models": 15,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -651,7 +651,7 @@
     {
       "id": "livebench_agentic_coding",
       "inEci": false,
-      "models": 106,
+      "models": 107,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -663,7 +663,7 @@
     {
       "id": "livebench_coding",
       "inEci": false,
-      "models": 126,
+      "models": 127,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -1225,7 +1225,7 @@
       "unit": "pct"
     }
   ],
-  "generatedAt": "2026-10-06T19:01:45.616Z",
+  "generatedAt": "2026-10-07T07:41:52.477Z",
   "models": [
     {
       "benchmarks": {
@@ -2465,7 +2465,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1368.5,
+          "score": 1368.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -2473,7 +2473,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1222.5,
+          "score": 1223.3,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -3954,7 +3954,7 @@
         "webdev_arena_elo": null
       },
       "capabilities": {
-        "promptCaching": true,
+        "promptCaching": false,
         "reasoning": null,
         "structuredOutput": null,
         "toolCall": null
@@ -3991,9 +3991,9 @@
         "totalB": 235
       },
       "pricing": {
-        "cachedInputPerMTok": 0.0175,
-        "inputPerMTok": 0.0875,
-        "outputPerMTok": 0.35
+        "cachedInputPerMTok": null,
+        "inputPerMTok": 0.09,
+        "outputPerMTok": 0.55
       },
       "provenance": {
         "benchmarks.aime": "epoch.ai",
@@ -4009,7 +4009,6 @@
         "name": "derived",
         "params.activeB": "derived",
         "params.totalB": "derived",
-        "pricing.cachedInputPerMTok": "litellm",
         "pricing.inputPerMTok": "litellm",
         "pricing.outputPerMTok": "litellm",
         "releaseDate": "epoch.ai",
@@ -5201,7 +5200,7 @@
       "id": "alibaba/qwen3-30b-a3b-instruct-2507",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 235929,
+      "maxOutput": 32000,
       "modalities": {
         "input": [
           "text"
@@ -5219,8 +5218,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.1,
-        "outputPerMTok": 0.3
+        "inputPerMTok": 0.04815,
+        "outputPerMTok": 0.19305
       },
       "provenance": {
         "benchmarks.aime": "epoch.ai",
@@ -29056,14 +29055,14 @@
       "params": {
         "activeB": null,
         "confidence": "estimated",
-        "sizeTier": 1,
+        "sizeTier": 2,
         "sizeTierBasis": "price",
         "totalB": null
       },
       "pricing": {
         "cachedInputPerMTok": 0.11,
-        "inputPerMTok": 0.25,
-        "outputPerMTok": 1
+        "inputPerMTok": 0.29,
+        "outputPerMTok": 1.14
       },
       "provenance": {
         "benchmarks.aime": "epoch.ai",
@@ -29079,7 +29078,7 @@
         "modalities": "openrouter",
         "name": "derived",
         "params.sizeTier": "derived",
-        "pricing.cachedInputPerMTok": "openrouter",
+        "pricing.cachedInputPerMTok": "litellm",
         "pricing.inputPerMTok": "litellm",
         "pricing.outputPerMTok": "litellm",
         "releaseDate": "epoch.ai",
@@ -35312,8 +35311,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": 0.006,
-        "inputPerMTok": 0.21,
-        "outputPerMTok": 0.66
+        "inputPerMTok": 0.22,
+        "outputPerMTok": 0.84
       },
       "provenance": {
         "benchmarks.eci": "epoch.ai",
@@ -39226,7 +39225,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1389.9,
+          "score": 1390,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39234,7 +39233,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1247.7,
+          "score": 1247.8,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39319,7 +39318,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1389.9,
+          "score": 1390,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39327,7 +39326,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1247.7,
+          "score": 1247.8,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39839,7 +39838,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1387.3,
+          "score": 1387.4,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39933,7 +39932,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1387.3,
+          "score": 1387.4,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -43712,16 +43711,34 @@
         "name": "derived",
         "params.sizeTier": "derived",
         "pricing.cachedInputPerMTok": "vercel-gateway",
-        "pricing.inputPerMTok": "openrouter",
-        "pricing.outputPerMTok": "openrouter",
+        "pricing.inputPerMTok": "litellm",
+        "pricing.outputPerMTok": "litellm",
         "releaseDate": "vercel-gateway",
         "releaseDatePrecision": "vercel-gateway",
+        "scores": "derived",
         "vendorId": "derived"
       },
       "releaseDate": "2026-10-06",
       "releaseDatePrecision": "day",
       "retiredAt": null,
-      "scores": [],
+      "scores": [
+        {
+          "attribution": "third-party",
+          "league": "arena_image_edit",
+          "score": 1428.1,
+          "source": "lmarena",
+          "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+          "unit": "elo"
+        },
+        {
+          "attribution": "third-party",
+          "league": "arena_text_to_image",
+          "score": 1328.1,
+          "source": "lmarena",
+          "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+          "unit": "elo"
+        }
+      ],
       "slug": "google-gemini-nano-banana-2-1",
       "trainingComputeFlop": null,
       "vendorId": "google"
@@ -47157,11 +47174,12 @@
         "pricing.outputPerMTok": "litellm",
         "releaseDate": "openrouter",
         "releaseDatePrecision": "openrouter",
+        "retiredAt": "derived",
         "vendorId": "derived"
       },
       "releaseDate": "2026-07-10",
       "releaseDatePrecision": "day",
-      "retiredAt": null,
+      "retiredAt": "2026-10-07",
       "scores": [],
       "slug": "kwaipilot-kat-coder-pro-v2-5",
       "trainingComputeFlop": null,
@@ -48986,7 +49004,7 @@
         "modalities": "openrouter",
         "name": "derived",
         "params.sizeTier": "derived",
-        "pricing.cachedInputPerMTok": "openrouter",
+        "pricing.cachedInputPerMTok": "litellm",
         "pricing.inputPerMTok": "openrouter",
         "pricing.outputPerMTok": "openrouter",
         "releaseDate": "epoch.ai",
@@ -56199,7 +56217,24 @@
         "structuredOutput": true,
         "toolCall": true
       },
-      "coding": [],
+      "coding": [
+        {
+          "attribution": "third-party",
+          "league": "livebench_coding",
+          "score": 75.37,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "livebench_agentic_coding",
+          "score": 57.17,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        }
+      ],
       "contextWindow": 1048576,
       "firstSeenAt": "2026-10-06T19:01:45.616Z",
       "id": "mistral/mistral-large-4",
@@ -56234,6 +56269,7 @@
         "capabilities.reasoning": "models.dev",
         "capabilities.structuredOutput": "models.dev",
         "capabilities.toolCall": "models.dev",
+        "coding": "derived",
         "contextWindow": "models.dev",
         "maxOutput": "models.dev",
         "modalities": "models.dev",
@@ -56245,12 +56281,30 @@
         "pricing.outputPerMTok": "models.dev",
         "releaseDate": "models.dev",
         "releaseDatePrecision": "models.dev",
+        "scores": "derived",
         "vendorId": "derived"
       },
       "releaseDate": "2026-10-06",
       "releaseDatePrecision": "day",
       "retiredAt": null,
-      "scores": [],
+      "scores": [
+        {
+          "attribution": "third-party",
+          "league": "livebench_agentic_coding",
+          "score": 57.17,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "livebench_coding",
+          "score": 75.37,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        }
+      ],
       "slug": "mistral-mistral-large-4",
       "trainingComputeFlop": null,
       "vendorId": "mistral"
@@ -56299,7 +56353,7 @@
         "totalB": null
       },
       "pricing": {
-        "cachedInputPerMTok": 0.07,
+        "cachedInputPerMTok": 0.068,
         "inputPerMTok": 0.68,
         "outputPerMTok": 2.09
       },
@@ -56310,9 +56364,9 @@
         "modalities": "openrouter",
         "name": "derived",
         "params.sizeTier": "derived",
-        "pricing.cachedInputPerMTok": "openrouter",
-        "pricing.inputPerMTok": "openrouter",
-        "pricing.outputPerMTok": "openrouter",
+        "pricing.cachedInputPerMTok": "litellm",
+        "pricing.inputPerMTok": "litellm",
+        "pricing.outputPerMTok": "litellm",
         "releaseDate": "openrouter",
         "releaseDatePrecision": "openrouter",
         "vendorId": "derived"
@@ -77806,14 +77860,14 @@
       "params": {
         "activeB": null,
         "confidence": "estimated",
-        "sizeTier": 5,
+        "sizeTier": 4,
         "sizeTierBasis": "price+naming",
         "totalB": null
       },
       "pricing": {
-        "cachedInputPerMTok": 0.4,
-        "inputPerMTok": 4,
-        "outputPerMTok": 20
+        "cachedInputPerMTok": 0.2,
+        "inputPerMTok": 2,
+        "outputPerMTok": 10
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
@@ -80316,7 +80370,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1238,
+          "score": 1237.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80397,7 +80451,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1461.8,
+          "score": 1461.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80405,7 +80459,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1383.5,
+          "score": 1383.2,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80486,7 +80540,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1480.7,
+          "score": 1481,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80494,7 +80548,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1397.1,
+          "score": 1398.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80583,7 +80637,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1424.9,
+          "score": 1424.6,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92676,7 +92730,7 @@
         {
           "attribution": "third-party",
           "league": "arena_image_edit",
-          "score": 1425.5,
+          "score": 1424.5,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92767,7 +92821,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1169.9,
+          "score": 1170.1,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -97613,43 +97667,43 @@
   ],
   "sources": {
     "derived": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
       "note": "管线内推导的字段（规模档位、缓存能力、退役判定）",
       "ok": true
     },
     "epoch.ai": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
       "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 328 行；去重后 417 个模型实体；合规拦截 1 个文件",
       "ok": true
     },
     "huggingface": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
       "note": "请求 171 个开源模型，成功 167，失败 4",
       "ok": true
     },
     "litellm": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
-      "note": "4479 条（对话类 3563 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "note": "4485 条（对话类 3569 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
       "note": "Apache-2.0 / DATASHEET 明文「no copyrights on the data」。采用 6 个同期 release（2026-06-25, 2026-01-08, 2025-12-23, 2025-11-25, 2025-05-30, 2025-04-25）；跳过题目集换代前的 5 个（2024-06-24, 2024-07-26, 2024-08-31, 2024-11-25, 2025-04-02）——实测跨这个断点同一模型的 Coding 分中位差 27.6 分，不可同池。",
       "ok": true
     },
     "lmarena": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
-      "note": "7/7 个分榜，共 323 条 Arena 分",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "note": "7/7 个分榜，共 325 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
-      "note": "models.json 445 条；api.json 226 provider / 8410 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "note": "models.json 445 条；api.json 226 provider / 8417 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
       "ok": true
     },
     "openrouter": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
-      "note": "466 条；已剔除 artificial_analysis 290 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "note": "465 条；已剔除 artificial_analysis 290 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
@@ -97658,8 +97712,8 @@
       "ok": true
     },
     "vercel-gateway": {
-      "fetchedAt": "2026-10-06T19:01:45.616Z",
-      "note": "410 条（language 269 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "note": "414 条（language 269 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }
   },
