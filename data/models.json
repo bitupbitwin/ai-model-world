@@ -1225,7 +1225,7 @@
       "unit": "pct"
     }
   ],
-  "generatedAt": "2026-10-07T07:41:52.477Z",
+  "generatedAt": "2026-10-07T19:30:16.050Z",
   "models": [
     {
       "benchmarks": {
@@ -17043,6 +17043,82 @@
         }
       ],
       "slug": "anthropic-claude-haiku-4-5-20251001",
+      "trainingComputeFlop": null,
+      "vendorId": "anthropic"
+    },
+    {
+      "benchmarks": {
+        "aime": null,
+        "arc_agi_2": null,
+        "eci": null,
+        "fiction_live": null,
+        "gpqa_diamond": null,
+        "swe_bench_pro": null,
+        "swe_bench_vendor": null,
+        "swe_bench_verified": null,
+        "webdev_arena_elo": null
+      },
+      "capabilities": {
+        "promptCaching": true,
+        "reasoning": true,
+        "structuredOutput": true,
+        "toolCall": true
+      },
+      "coding": [],
+      "contextWindow": 1000000,
+      "firstSeenAt": "2026-10-07T19:30:16.050Z",
+      "id": "anthropic/claude-haiku-5-5",
+      "knowledgeCutoff": "2026-06",
+      "license": null,
+      "maxOutput": 128000,
+      "modalities": {
+        "input": [
+          "image",
+          "pdf",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "name": "Claude Haiku 5.5",
+      "openWeights": false,
+      "params": {
+        "activeB": null,
+        "confidence": "estimated",
+        "sizeTier": 1,
+        "sizeTierBasis": "price+naming",
+        "totalB": null
+      },
+      "pricing": {
+        "cachedInputPerMTok": 0.01,
+        "inputPerMTok": 0.1,
+        "outputPerMTok": 0.5
+      },
+      "provenance": {
+        "capabilities.promptCaching": "derived",
+        "capabilities.reasoning": "models.dev",
+        "capabilities.structuredOutput": "models.dev",
+        "capabilities.toolCall": "models.dev",
+        "contextWindow": "models.dev",
+        "knowledgeCutoff": "models.dev",
+        "maxOutput": "models.dev",
+        "modalities": "models.dev",
+        "name": "models.dev",
+        "openWeights": "models.dev",
+        "params.sizeTier": "derived",
+        "pricing.cachedInputPerMTok": "models.dev",
+        "pricing.inputPerMTok": "models.dev",
+        "pricing.outputPerMTok": "models.dev",
+        "releaseDate": "models.dev",
+        "releaseDatePrecision": "models.dev",
+        "vendorId": "derived"
+      },
+      "releaseDate": "2026-10-07",
+      "releaseDatePrecision": "day",
+      "retiredAt": null,
+      "scores": [],
+      "slug": "anthropic-claude-haiku-5-5",
       "trainingComputeFlop": null,
       "vendorId": "anthropic"
     },
@@ -33448,8 +33524,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": 0.028,
-        "inputPerMTok": 0.139,
-        "outputPerMTok": 0.278
+        "inputPerMTok": 0.14,
+        "outputPerMTok": 0.28
       },
       "provenance": {
         "benchmarks.aime": "epoch.ai",
@@ -52235,7 +52311,7 @@
         "totalB": 227.41
       },
       "pricing": {
-        "cachedInputPerMTok": 0.06,
+        "cachedInputPerMTok": 0.03,
         "inputPerMTok": 0.6,
         "outputPerMTok": 2.4
       },
@@ -53242,9 +53318,9 @@
       },
       "capabilities": {
         "promptCaching": true,
-        "reasoning": null,
-        "structuredOutput": null,
-        "toolCall": null
+        "reasoning": false,
+        "structuredOutput": true,
+        "toolCall": true
       },
       "coding": [
         {
@@ -53264,23 +53340,22 @@
           "unit": "index"
         }
       ],
-      "contextWindow": 256000,
+      "contextWindow": 128000,
       "firstSeenAt": "2026-08-31T10:07:26.393Z",
       "id": "mistral/codestral-2508",
       "knowledgeCutoff": null,
       "license": null,
-      "maxOutput": 204800,
+      "maxOutput": 8192,
       "modalities": {
         "input": [
-          "pdf",
           "text"
         ],
         "output": [
           "text"
         ]
       },
-      "name": "Codestral 2508",
-      "openWeights": null,
+      "name": "Codestral 25.08",
+      "openWeights": false,
       "params": {
         "activeB": null,
         "confidence": "estimated",
@@ -53295,21 +53370,25 @@
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
+        "capabilities.reasoning": "models.dev",
+        "capabilities.structuredOutput": "models.dev",
+        "capabilities.toolCall": "models.dev",
         "coding": "derived",
-        "contextWindow": "openrouter",
-        "maxOutput": "openrouter",
-        "modalities": "openrouter",
-        "name": "derived",
+        "contextWindow": "models.dev",
+        "maxOutput": "models.dev",
+        "modalities": "models.dev",
+        "name": "models.dev",
+        "openWeights": "models.dev",
         "params.sizeTier": "derived",
-        "pricing.cachedInputPerMTok": "litellm",
-        "pricing.inputPerMTok": "litellm",
-        "pricing.outputPerMTok": "litellm",
-        "releaseDate": "openrouter",
-        "releaseDatePrecision": "openrouter",
+        "pricing.cachedInputPerMTok": "models.dev",
+        "pricing.inputPerMTok": "models.dev",
+        "pricing.outputPerMTok": "models.dev",
+        "releaseDate": "models.dev",
+        "releaseDatePrecision": "models.dev",
         "scores": "derived",
         "vendorId": "derived"
       },
-      "releaseDate": "2025-08-01",
+      "releaseDate": "2025-07-30",
       "releaseDatePrecision": "day",
       "retiredAt": null,
       "scores": [
@@ -54520,8 +54599,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.33807,
-        "outputPerMTok": 0.45076
+        "inputPerMTok": 0.33531,
+        "outputPerMTok": 0.44708
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
@@ -56221,7 +56300,7 @@
         {
           "attribution": "third-party",
           "league": "livebench_coding",
-          "score": 75.37,
+          "score": 77.16,
           "source": "livebench",
           "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
           "unit": "pct"
@@ -56299,7 +56378,7 @@
         {
           "attribution": "third-party",
           "league": "livebench_coding",
-          "score": 75.37,
+          "score": 77.16,
           "source": "livebench",
           "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
           "unit": "pct"
@@ -63487,7 +63566,7 @@
         "totalB": 30
       },
       "pricing": {
-        "cachedInputPerMTok": 0.03,
+        "cachedInputPerMTok": 0.025,
         "inputPerMTok": 0.05,
         "outputPerMTok": 0.2
       },
@@ -63502,7 +63581,7 @@
         "openWeights": "models.dev",
         "params.activeB": "derived",
         "params.totalB": "derived",
-        "pricing.cachedInputPerMTok": "openrouter",
+        "pricing.cachedInputPerMTok": "vercel-gateway",
         "pricing.inputPerMTok": "litellm",
         "pricing.outputPerMTok": "litellm",
         "releaseDate": "openrouter",
@@ -65783,9 +65862,9 @@
         {
           "attribution": "third-party",
           "league": "metr_time_horizons",
-          "score": 3.73,
+          "score": 6.57,
           "source": "epoch.ai",
-          "sourceUrl": null,
+          "sourceUrl": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
           "unit": "minutes"
         },
         {
@@ -67732,9 +67811,9 @@
         {
           "attribution": "third-party",
           "league": "metr_time_horizons",
-          "score": 6.99,
+          "score": 9.17,
           "source": "epoch.ai",
-          "sourceUrl": null,
+          "sourceUrl": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
           "unit": "minutes"
         },
         {
@@ -97667,43 +97746,43 @@
   ],
   "sources": {
     "derived": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
       "note": "管线内推导的字段（规模档位、缓存能力、退役判定）",
       "ok": true
     },
     "epoch.ai": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
       "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 328 行；去重后 417 个模型实体；合规拦截 1 个文件",
       "ok": true
     },
     "huggingface": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
       "note": "请求 171 个开源模型，成功 167，失败 4",
       "ok": true
     },
     "litellm": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
-      "note": "4485 条（对话类 3569 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "note": "4502 条（对话类 3586 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
       "note": "Apache-2.0 / DATASHEET 明文「no copyrights on the data」。采用 6 个同期 release（2026-06-25, 2026-01-08, 2025-12-23, 2025-11-25, 2025-05-30, 2025-04-25）；跳过题目集换代前的 5 个（2024-06-24, 2024-07-26, 2024-08-31, 2024-11-25, 2025-04-02）——实测跨这个断点同一模型的 Coding 分中位差 27.6 分，不可同池。",
       "ok": true
     },
     "lmarena": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
       "note": "7/7 个分榜，共 325 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
-      "note": "models.json 445 条；api.json 226 provider / 8417 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "note": "models.json 447 条；api.json 226 provider / 8434 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
       "ok": true
     },
     "openrouter": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
-      "note": "465 条；已剔除 artificial_analysis 290 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "note": "467 条；已剔除 artificial_analysis 290 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
@@ -97712,8 +97791,8 @@
       "ok": true
     },
     "vercel-gateway": {
-      "fetchedAt": "2026-10-07T07:41:52.477Z",
-      "note": "414 条（language 269 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "note": "416 条（language 271 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }
   },
