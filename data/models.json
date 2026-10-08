@@ -447,7 +447,7 @@
     {
       "id": "frontier_code",
       "inEci": true,
-      "models": 44,
+      "models": 45,
       "randomBaseline": 0,
       "releaseDate": "2026-06-08",
       "scoreCeiling": 100,
@@ -651,7 +651,7 @@
     {
       "id": "livebench_agentic_coding",
       "inEci": false,
-      "models": 107,
+      "models": 108,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -663,7 +663,7 @@
     {
       "id": "livebench_coding",
       "inEci": false,
-      "models": 127,
+      "models": 128,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -1083,7 +1083,7 @@
     {
       "id": "terminal_bench",
       "inEci": false,
-      "models": 56,
+      "models": 57,
       "randomBaseline": null,
       "releaseDate": null,
       "scoreCeiling": null,
@@ -1225,7 +1225,7 @@
       "unit": "pct"
     }
   ],
-  "generatedAt": "2026-10-07T19:30:16.050Z",
+  "generatedAt": "2026-10-08T07:57:39.688Z",
   "models": [
     {
       "benchmarks": {
@@ -2473,7 +2473,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1223.3,
+          "score": 1222.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -17064,7 +17064,40 @@
         "structuredOutput": true,
         "toolCall": true
       },
-      "coding": [],
+      "coding": [
+        {
+          "attribution": "vendor-self-reported",
+          "league": "terminal_bench",
+          "score": 39.2,
+          "source": "models.dev",
+          "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "livebench_coding",
+          "score": 76.39,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "livebench_agentic_coding",
+          "score": 51.36,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        },
+        {
+          "attribution": "vendor-self-reported",
+          "league": "frontier_code",
+          "score": 46.4,
+          "source": "models.dev",
+          "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+          "unit": "pct"
+        }
+      ],
       "contextWindow": 1000000,
       "firstSeenAt": "2026-10-07T19:30:16.050Z",
       "id": "anthropic/claude-haiku-5-5",
@@ -17100,6 +17133,7 @@
         "capabilities.reasoning": "models.dev",
         "capabilities.structuredOutput": "models.dev",
         "capabilities.toolCall": "models.dev",
+        "coding": "derived",
         "contextWindow": "models.dev",
         "knowledgeCutoff": "models.dev",
         "maxOutput": "models.dev",
@@ -17112,12 +17146,46 @@
         "pricing.outputPerMTok": "models.dev",
         "releaseDate": "models.dev",
         "releaseDatePrecision": "models.dev",
+        "scores": "derived",
         "vendorId": "derived"
       },
       "releaseDate": "2026-10-07",
       "releaseDatePrecision": "day",
       "retiredAt": null,
-      "scores": [],
+      "scores": [
+        {
+          "attribution": "vendor-self-reported",
+          "league": "frontier_code",
+          "score": 46.4,
+          "source": "models.dev",
+          "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "livebench_agentic_coding",
+          "score": 51.36,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "livebench_coding",
+          "score": 76.39,
+          "source": "livebench",
+          "sourceUrl": "https://livebench.ai/#/?release=2026-06-25",
+          "unit": "pct"
+        },
+        {
+          "attribution": "vendor-self-reported",
+          "league": "terminal_bench",
+          "score": 39.2,
+          "source": "models.dev",
+          "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+          "unit": "pct"
+        }
+      ],
       "slug": "anthropic-claude-haiku-5-5",
       "trainingComputeFlop": null,
       "vendorId": "anthropic"
@@ -24670,7 +24738,7 @@
         "totalB": null
       },
       "pricing": {
-        "cachedInputPerMTok": 0.2,
+        "cachedInputPerMTok": 0.1,
         "inputPerMTok": 2,
         "outputPerMTok": 10
       },
@@ -31827,7 +31895,7 @@
         "webdev_arena_elo": null
       },
       "capabilities": {
-        "promptCaching": true,
+        "promptCaching": false,
         "reasoning": null,
         "structuredOutput": null,
         "toolCall": null
@@ -31882,7 +31950,7 @@
         "totalB": null
       },
       "pricing": {
-        "cachedInputPerMTok": 0.135,
+        "cachedInputPerMTok": null,
         "inputPerMTok": 0.27,
         "outputPerMTok": 1
       },
@@ -31894,11 +31962,10 @@
         "modalities": "openrouter",
         "name": "derived",
         "params.sizeTier": "derived",
-        "pricing.cachedInputPerMTok": "vercel-gateway",
         "pricing.inputPerMTok": "litellm",
         "pricing.outputPerMTok": "litellm",
-        "releaseDate": "vercel-gateway",
-        "releaseDatePrecision": "vercel-gateway",
+        "releaseDate": "openrouter",
+        "releaseDatePrecision": "openrouter",
         "scores": "derived",
         "trainingComputeFlop": "epoch.ai",
         "vendorId": "derived"
@@ -35588,11 +35655,12 @@
         "pricing.outputPerMTok": "litellm",
         "releaseDate": "vercel-gateway",
         "releaseDatePrecision": "vercel-gateway",
+        "retiredAt": "derived",
         "vendorId": "derived"
       },
       "releaseDate": "2026-09-29",
       "releaseDatePrecision": "day",
-      "retiredAt": null,
+      "retiredAt": "2026-10-08",
       "scores": [],
       "slug": "deepseek-deepseek-v4-1-flash-fast",
       "trainingComputeFlop": null,
@@ -39309,7 +39377,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1247.8,
+          "score": 1247.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39402,7 +39470,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1247.8,
+          "score": 1247.9,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -39922,7 +39990,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1261.1,
+          "score": 1261.8,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -40016,7 +40084,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1261.1,
+          "score": 1261.8,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -40324,7 +40392,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1250.3,
+          "score": 1250.2,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -43809,7 +43877,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1328.1,
+          "score": 1327.8,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80449,7 +80517,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1237.7,
+          "score": 1237.4,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80538,7 +80606,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1383.2,
+          "score": 1383,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -80627,7 +80695,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1398.5,
+          "score": 1397.6,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -87168,8 +87236,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": 0.033,
-        "inputPerMTok": 0.14,
-        "outputPerMTok": 0.58
+        "inputPerMTok": 0.132,
+        "outputPerMTok": 0.53
       },
       "provenance": {
         "benchmarks.swe_bench_pro": "models.dev",
@@ -92817,7 +92885,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1296.7,
+          "score": 1294.2,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -92900,7 +92968,7 @@
         {
           "attribution": "third-party",
           "league": "arena_text_to_image",
-          "score": 1170.1,
+          "score": 1169.7,
           "source": "lmarena",
           "sourceUrl": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
           "unit": "elo"
@@ -94786,7 +94854,7 @@
         "totalB": 107.71
       },
       "pricing": {
-        "cachedInputPerMTok": 0.05,
+        "cachedInputPerMTok": 0.055,
         "inputPerMTok": 0.3,
         "outputPerMTok": 0.9
       },
@@ -97746,43 +97814,43 @@
   ],
   "sources": {
     "derived": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
       "note": "管线内推导的字段（规模档位、缓存能力、退役判定）",
       "ok": true
     },
     "epoch.ai": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
       "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 328 行；去重后 417 个模型实体；合规拦截 1 个文件",
       "ok": true
     },
     "huggingface": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
       "note": "请求 171 个开源模型，成功 167，失败 4",
       "ok": true
     },
     "litellm": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
-      "note": "4502 条（对话类 3586 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
+      "note": "4503 条（对话类 3587 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
       "note": "Apache-2.0 / DATASHEET 明文「no copyrights on the data」。采用 6 个同期 release（2026-06-25, 2026-01-08, 2025-12-23, 2025-11-25, 2025-05-30, 2025-04-25）；跳过题目集换代前的 5 个（2024-06-24, 2024-07-26, 2024-08-31, 2024-11-25, 2025-04-02）——实测跨这个断点同一模型的 Coding 分中位差 27.6 分，不可同池。",
       "ok": true
     },
     "lmarena": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
       "note": "7/7 个分榜，共 325 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
-      "note": "models.json 447 条；api.json 226 provider / 8434 条；benchmarks[] 1082 条，已拦截 AA 血缘 174 条，非编程口径跳过 549 条",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
+      "note": "models.json 447 条；api.json 226 provider / 8454 条；benchmarks[] 1090 条，已拦截 AA 血缘 176 条，非编程口径跳过 553 条",
       "ok": true
     },
     "openrouter": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
-      "note": "467 条；已剔除 artificial_analysis 290 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
+      "note": "467 条；已剔除 artificial_analysis 292 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
@@ -97791,8 +97859,8 @@
       "ok": true
     },
     "vercel-gateway": {
-      "fetchedAt": "2026-10-07T19:30:16.050Z",
-      "note": "416 条（language 271 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-08T07:57:39.688Z",
+      "note": "412 条（language 267 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }
   },

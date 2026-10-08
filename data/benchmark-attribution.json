@@ -481,6 +481,28 @@
         "sourceUrl": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
       }
     },
+    "anthropic/claude-haiku-5-5": {
+      "frontier_code": {
+        "attributionType": "vendor-self-reported",
+        "key": "frontier_code",
+        "league": "frontier_code",
+        "metric": "score",
+        "rawName": "FrontierCode",
+        "score": 46.4,
+        "sourceHost": "anthropic.com",
+        "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5"
+      },
+      "terminal_bench": {
+        "attributionType": "vendor-self-reported",
+        "key": "terminal_bench",
+        "league": "terminal_bench",
+        "metric": "score",
+        "rawName": "Terminal-Bench",
+        "score": 39.2,
+        "sourceHost": "anthropic.com",
+        "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5"
+      }
+    },
     "anthropic/claude-opus-4-0": {
       "aider_polyglot": {
         "attributionType": "third-party",
@@ -3512,5 +3534,5 @@
       }
     }
   },
-  "generatedAt": "2026-10-07T19:30:16.050Z"
+  "generatedAt": "2026-10-08T07:57:39.688Z"
 }
