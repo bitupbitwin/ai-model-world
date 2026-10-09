@@ -1,6 +1,6 @@
 {
   "_note": "闭源模型的「体型」代理指标：输出价格档位 × 厂商命名档位合成的 1–5 档规模。这份档位已经并进 data/models.json 的 params.sizeTier / params.sizeTierBasis，本文件只作为独立索引保留，方便离线核对。",
-  "generatedAt": "2026-10-09T07:58:33.162Z",
+  "generatedAt": "2026-10-09T18:58:10.985Z",
   "tiers": {
     "aion-labs/aion-2.0": {
       "basis": "price",
@@ -30,6 +30,10 @@
       "basis": "price+naming",
       "tier": 4
     },
+    "alibaba/qwen-mt-plus": {
+      "basis": "price+naming",
+      "tier": 4
+    },
     "alibaba/qwen-omni-turbo": {
       "basis": "price+naming",
       "tier": 1
@@ -37,10 +41,6 @@
     "alibaba/qwen-plus": {
       "basis": "price+naming",
       "tier": 4
-    },
-    "alibaba/qwen-plus-2025-07-28": {
-      "basis": "price+naming",
-      "tier": 3
     },
     "alibaba/qwen-turbo": {
       "basis": "price+naming",
@@ -322,6 +322,10 @@
       "basis": "price",
       "tier": 3
     },
+    "baidu/cobuddy": {
+      "basis": "price",
+      "tier": 2
+    },
     "bytedance-seed/seed-1-6": {
       "basis": "price",
       "tier": 2
@@ -373,10 +377,6 @@
     "deepseek/deepseek-chat-v3.1": {
       "basis": "price",
       "tier": 1
-    },
-    "deepseek/deepseek-r1-0528": {
-      "basis": "price",
-      "tier": 2
     },
     "deepseek/deepseek-v3.1-terminus": {
       "basis": "price",
@@ -570,19 +570,7 @@
       "basis": "price+naming",
       "tier": 1
     },
-    "inclusionai/ling-3.0-flash": {
-      "basis": "price+naming",
-      "tier": 1
-    },
-    "inclusionai/ling-3.0-flash-fin": {
-      "basis": "price+naming",
-      "tier": 1
-    },
     "inclusionai/ling-3.0-flash-sante": {
-      "basis": "price+naming",
-      "tier": 1
-    },
-    "inclusionai/ling-3.0-flash-vl": {
       "basis": "price+naming",
       "tier": 1
     },
@@ -647,10 +635,6 @@
       "tier": 2
     },
     "microsoft/phi-4": {
-      "basis": "price",
-      "tier": 1
-    },
-    "microsoft/wizardlm-2-8x22b": {
       "basis": "price",
       "tier": 1
     },
@@ -747,10 +731,6 @@
       "tier": 1
     },
     "moonshotai/kimi-k2": {
-      "basis": "price",
-      "tier": 2
-    },
-    "moonshotai/kimi-k2-0905": {
       "basis": "price",
       "tier": 2
     },
