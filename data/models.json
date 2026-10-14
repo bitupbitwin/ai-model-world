@@ -255,7 +255,7 @@
     {
       "id": "chess_puzzles",
       "inEci": true,
-      "models": 161,
+      "models": 170,
       "randomBaseline": 4.96,
       "releaseDate": "2025-12-10",
       "scoreCeiling": 100,
@@ -531,7 +531,7 @@
     {
       "id": "furniture_assembly",
       "inEci": true,
-      "models": 37,
+      "models": 38,
       "randomBaseline": 30,
       "releaseDate": "2026-09-23",
       "scoreCeiling": 100,
@@ -1225,7 +1225,7 @@
       "unit": "pct"
     }
   ],
-  "generatedAt": "2026-10-14T06:39:53.883Z",
+  "generatedAt": "2026-10-14T18:09:53.794Z",
   "models": [
     {
       "benchmarks": {
@@ -6307,7 +6307,7 @@
       "pricing": {
         "cachedInputPerMTok": 0.07,
         "inputPerMTok": 0.2,
-        "outputPerMTok": 0.89504
+        "outputPerMTok": 0.8956
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
@@ -9097,7 +9097,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 21,
+          "score": 14,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -9303,7 +9303,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 21,
+          "score": 14,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -9514,7 +9514,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 22,
+          "score": 8,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -9728,7 +9728,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 22,
+          "score": 8,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -9942,7 +9942,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 22,
+          "score": 8,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -10591,7 +10591,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 20,
+          "score": 12,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -11045,7 +11045,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 17,
+          "score": 14,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -11488,7 +11488,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 19,
+          "score": 26,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -12650,7 +12650,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 29,
+          "score": 46,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -12933,7 +12933,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 40,
+          "score": 37,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -13208,7 +13208,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 29,
+          "score": 46,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -16027,7 +16027,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 41,
+          "score": 47,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -16510,7 +16510,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 47,
+          "score": 48,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -17500,6 +17500,14 @@
           "score": 32.97,
           "source": "epoch.ai",
           "sourceUrl": "https://andonlabs.com/evals/blueprint-bench-2",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 55,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -19324,7 +19332,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 12,
+          "score": 14,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -19802,7 +19810,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 12,
+          "score": 14,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -20336,7 +20344,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 17,
+          "score": 21,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -20878,7 +20886,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 30,
+          "score": 41,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -21380,7 +21388,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 34,
+          "score": 52,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -21969,7 +21977,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 42,
+          "score": 43,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -22416,6 +22424,14 @@
           "score": 51.19,
           "source": "epoch.ai",
           "sourceUrl": "https://andonlabs.com/evals/blueprint-bench-2",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 67,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -23568,7 +23584,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 12,
+          "score": 10,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -24021,7 +24037,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 12,
+          "score": 10,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -24522,7 +24538,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 13,
+          "score": 23,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -24975,7 +24991,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 35,
+          "score": 45,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -25357,6 +25373,14 @@
           "score": 39.26,
           "source": "epoch.ai",
           "sourceUrl": "https://andonlabs.com/evals/blueprint-bench-2",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 59,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -34438,7 +34462,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 33,
+          "score": 32,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -34753,7 +34777,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 33,
+          "score": 32,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -35052,7 +35076,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 33,
+          "score": 32,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -35583,7 +35607,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 20,
+          "score": 19,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -35937,7 +35961,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 20,
+          "score": 19,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -36197,7 +36221,7 @@
         "totalB": 1623.5
       },
       "pricing": {
-        "cachedInputPerMTok": 0.05,
+        "cachedInputPerMTok": 0.047907,
         "inputPerMTok": 1.32,
         "outputPerMTok": 3.96
       },
@@ -36276,7 +36300,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 47,
+          "score": 46,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -36627,6 +36651,14 @@
           "score": 72.92,
           "source": "epoch.ai",
           "sourceUrl": "https://epoch.ai/benchmarks",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 48,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -39846,7 +39878,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 40,
+          "score": 39,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -40255,7 +40287,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 40,
+          "score": 39,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -42882,7 +42914,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 50,
+          "score": 45,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -43282,7 +43314,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 22,
+          "score": 21,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -43770,7 +43802,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 43,
+          "score": 42,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -44479,7 +44511,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 61,
+          "score": 58,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -44806,6 +44838,14 @@
           "score": 54.45,
           "source": "epoch.ai",
           "sourceUrl": "https://andonlabs.com/evals/blueprint-bench-2",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 59,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -46196,7 +46236,7 @@
         "totalB": 25.81
       },
       "pricing": {
-        "cachedInputPerMTok": 0.049,
+        "cachedInputPerMTok": 0.05,
         "inputPerMTok": 0.111,
         "outputPerMTok": 0.38
       },
@@ -52103,7 +52143,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 38,
+          "score": 37,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -55058,7 +55098,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 14,
+          "score": 13,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -56873,8 +56913,8 @@
       },
       "pricing": {
         "cachedInputPerMTok": null,
-        "inputPerMTok": 0.33564,
-        "outputPerMTok": 0.44752
+        "inputPerMTok": 0.33585,
+        "outputPerMTok": 0.4478
       },
       "provenance": {
         "capabilities.promptCaching": "derived",
@@ -58845,6 +58885,14 @@
           "score": 39.43,
           "source": "epoch.ai",
           "sourceUrl": "https://cognition.com/frontiercode",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "furniture_assembly",
+          "score": 20.83,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -63835,7 +63883,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 26,
+          "score": 20,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -64197,7 +64245,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 21,
+          "score": 14,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -64699,7 +64747,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 39,
+          "score": 37,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -69014,7 +69062,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 6,
+          "score": 3,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -69299,7 +69347,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 7,
+          "score": 1,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -69542,6 +69590,14 @@
         },
         {
           "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 0,
+          "source": "epoch.ai",
+          "sourceUrl": null,
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
           "league": "critpt",
           "score": 0,
           "source": "epoch.ai",
@@ -69780,7 +69836,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 13,
+          "score": 6,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -70127,7 +70183,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 13,
+          "score": 6,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -70475,7 +70531,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 13,
+          "score": 6,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -70831,7 +70887,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 13,
+          "score": 6,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -71171,7 +71227,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 0,
+          "score": 3,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -71450,7 +71506,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 0,
+          "score": 3,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -71826,7 +71882,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 37,
+          "score": 36,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -72313,7 +72369,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 37,
+          "score": 36,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -73038,7 +73094,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 30,
+          "score": 24,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -73386,7 +73442,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 27,
+          "score": 22,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -73665,6 +73721,14 @@
         },
         {
           "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 48,
+          "source": "epoch.ai",
+          "sourceUrl": null,
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
           "league": "eci",
           "score": 150.28,
           "source": "epoch.ai",
@@ -73927,7 +73991,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 32,
+          "score": 42,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -74292,7 +74356,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 32,
+          "score": 42,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -75100,7 +75164,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 32,
+          "score": 42,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -76839,6 +76903,14 @@
         },
         {
           "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 60,
+          "source": "epoch.ai",
+          "sourceUrl": null,
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
           "league": "eci",
           "score": 155.4,
           "source": "epoch.ai",
@@ -77553,7 +77625,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 44,
+          "score": 48,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -78106,7 +78178,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 24,
+          "score": 23,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -78430,7 +78502,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 30,
+          "score": 36,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -78670,7 +78742,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 58.6,
+          "score": 59,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -79029,7 +79101,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 26,
+          "score": 63,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -79608,7 +79680,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 64,
+          "score": 62,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -79969,7 +80041,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 40,
+          "score": 43,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -80438,7 +80510,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 64,
+          "score": 68,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -80981,7 +81053,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 54,
+          "score": 47,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -81426,7 +81498,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 72,
+          "score": 74,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -81633,7 +81705,7 @@
         }
       ],
       "slug": "openai-gpt-6-astra",
-      "trainingComputeFlop": 1.0001e+27,
+      "trainingComputeFlop": 9.4e+27,
       "vendorId": "openai"
     },
     {
@@ -81945,7 +82017,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 31,
+          "score": 36,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -82304,6 +82376,14 @@
           "score": 36.88,
           "source": "epoch.ai",
           "sourceUrl": "https://andonlabs.com/evals/blueprint-bench-2",
+          "unit": "pct"
+        },
+        {
+          "attribution": "third-party",
+          "league": "chess_puzzles",
+          "score": 56,
+          "source": "epoch.ai",
+          "sourceUrl": null,
           "unit": "pct"
         },
         {
@@ -82681,7 +82761,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 61,
+          "score": 68,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -84922,7 +85002,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 17,
+          "score": 15,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -85407,7 +85487,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 26,
+          "score": 22,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -92640,7 +92720,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 24,
+          "score": 29,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -93007,7 +93087,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 24,
+          "score": 29,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -93583,7 +93663,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 24,
+          "score": 29,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -93855,7 +93935,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 24,
+          "score": 29,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -94122,7 +94202,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 25,
+          "score": 18,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -94470,7 +94550,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 36,
+          "score": 35,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -94882,7 +94962,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 40,
+          "score": 33,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -95255,7 +95335,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 38,
+          "score": 41,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -98130,7 +98210,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 6,
+          "score": 21,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -98988,7 +99068,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 19,
+          "score": 20,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -99359,7 +99439,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 21,
+          "score": 22,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -99858,7 +99938,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 21,
+          "score": 37,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -100298,7 +100378,7 @@
         {
           "attribution": "third-party",
           "league": "chess_puzzles",
-          "score": 14,
+          "score": 21,
           "source": "epoch.ai",
           "sourceUrl": null,
           "unit": "pct"
@@ -100827,43 +100907,43 @@
   ],
   "sources": {
     "derived": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
       "note": "管线内推导的字段（规模档位、缓存能力、退役判定）",
       "ok": true
     },
     "epoch.ai": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
       "note": "ZIP 89 个条目；取到 7/7 个指标；编程赛制 9 个；全榜单 78 个；训练算力 329 行；去重后 419 个模型实体；合规拦截 1 个文件",
       "ok": true
     },
     "huggingface": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
       "note": "请求 197 个开源模型，成功 193，失败 4",
       "ok": true
     },
     "litellm": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
-      "note": "4083 条（对话类 3154 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
+      "note": "4115 条（对话类 3153 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
       "note": "Apache-2.0 / DATASHEET 明文「no copyrights on the data」。采用 6 个同期 release（2026-06-25, 2026-01-08, 2025-12-23, 2025-11-25, 2025-05-30, 2025-04-25）；跳过题目集换代前的 5 个（2024-06-24, 2024-07-26, 2024-08-31, 2024-11-25, 2025-04-02）——实测跨这个断点同一模型的 Coding 分中位差 27.6 分，不可同池。",
       "ok": true
     },
     "lmarena": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
       "note": "7/7 个分榜，共 333 条 Arena 分",
       "ok": true
     },
     "models.dev": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
-      "note": "models.json 547 条；api.json 229 provider / 8832 条；benchmarks[] 1116 条，已拦截 AA 血缘 178 条，非编程口径跳过 571 条",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
+      "note": "models.json 547 条；api.json 229 provider / 8819 条；benchmarks[] 1116 条，已拦截 AA 血缘 178 条，非编程口径跳过 571 条",
       "ok": true
     },
     "openrouter": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
-      "note": "462 条；已剔除 artificial_analysis 285 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
+      "note": "462 条；已剔除 artificial_analysis 284 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
@@ -100872,7 +100952,7 @@
       "ok": true
     },
     "vercel-gateway": {
-      "fetchedAt": "2026-10-14T06:39:53.883Z",
+      "fetchedAt": "2026-10-14T18:09:53.794Z",
       "note": "464 条（language 313 条）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     }

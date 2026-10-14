@@ -591,12 +591,12 @@
         "curated": false,
         "file": "chess_puzzles.csv",
         "inEci": true,
-        "landed": 161,
+        "landed": 170,
         "multiplier": 100,
         "outOfRange": 0,
-        "rows": 227,
+        "rows": 242,
         "scoreColumn": "Best score (across scorers)",
-        "scored": 219,
+        "scored": 234,
         "selfRun": true,
         "supersededBy": null,
         "unit": "pct",
@@ -921,12 +921,12 @@
         "curated": false,
         "file": "furniture_assembly.csv",
         "inEci": true,
-        "landed": 37,
+        "landed": 38,
         "multiplier": 100,
         "outOfRange": 0,
-        "rows": 32,
+        "rows": 33,
         "scoreColumn": "Best score (across scorers)",
-        "scored": 32,
+        "scored": 33,
         "selfRun": true,
         "supersededBy": null,
         "unit": "pct",
@@ -1921,7 +1921,7 @@
     },
     "liveModels": 636
   },
-  "generatedAt": "2026-10-14T06:39:53.883Z",
+  "generatedAt": "2026-10-14T18:09:53.794Z",
   "livebench": {
     "_note": "LiveBench 官方榜（Apache-2.0，本轮调研里许可证最干净的一份）。release 清单优先从上游仓库的 LIVE_BENCH_RELEASES 常量解析，解析失败才用内置兜底清单——写死清单意味着新 release 不会被自动发现，与「发布后无人维护」的承诺相悖。releasesSkipped 里是题目集换代之前的 release，跨那个断点分数不可比（中位差 27.6 分）。",
     "matchedModels": 129,
@@ -2023,7 +2023,7 @@
       "ok": true
     },
     "litellm": {
-      "note": "4083 条（对话类 3154 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
+      "note": "4115 条（对话类 3153 条）；用作新模型的第三方佐证，以及 models.dev 缺项时的定价/上下文兜底",
       "ok": true
     },
     "livebench": {
@@ -2035,11 +2035,11 @@
       "ok": true
     },
     "models.dev": {
-      "note": "models.json 547 条；api.json 229 provider / 8832 条；benchmarks[] 1116 条，已拦截 AA 血缘 178 条，非编程口径跳过 571 条",
+      "note": "models.json 547 条；api.json 229 provider / 8819 条；benchmarks[] 1116 条，已拦截 AA 血缘 178 条，非编程口径跳过 571 条",
       "ok": true
     },
     "openrouter": {
-      "note": "462 条；已剔除 artificial_analysis 285 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
+      "note": "462 条；已剔除 artificial_analysis 284 处（AA ToS 合规）；用于新模型发现、发布日期投票，以及 models.dev 缺项时的定价/上下文/模态兜底",
       "ok": true
     },
     "override": {
