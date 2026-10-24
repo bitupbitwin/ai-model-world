@@ -3,30 +3,27 @@ name: 部署 OneNova 模型子站到 OSS
 on:
   push:
     branches: [main]
+  # 同步工作流只在真提交了新快照时派发（GITHUB_TOKEN 的提交不触发 push），并带 data_only=true；
+  # 手动运行默认走全套检查。2026-10 起不再监听 workflow_run：那样同步没提交也会白跑一次部署。
   workflow_dispatch:
-  # GITHUB_TOKEN 提交不触发 push 工作流，必须监听同步工作流完成。
-  workflow_run:
-    workflows: [同步模型数据]
-    types: [completed]
-    branches: [main]
+    inputs:
+      data_only:
+        description: 只更新了数据（跳过与代码有关的 lint 与单测）
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
-# 三种触发共用一个锁；上传过程中不取消，防止页面和资源只更新一半。
+# 两种触发共用一个锁；上传过程中不取消，防止页面和资源只更新一半。
 concurrency:
   group: onenova-models-oss
   cancel-in-progress: false
 
 jobs:
   deploy:
-    # 仅部署本仓库 main；同步失败、其他分支和外部仓库均不消费 Secrets。
-    if: >-
-      (github.event_name == 'workflow_run' &&
-       github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.head_branch == 'main' &&
-       github.event.workflow_run.head_repository.full_name == github.repository) ||
-      (github.event_name != 'workflow_run' && github.ref == 'refs/heads/main')
+    # 仅部署本仓库 main；其他分支均不消费 Secrets。
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
@@ -55,7 +52,7 @@ jobs:
         if: steps.config.outputs.ready == 'true'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          # workflow_run.head_sha 是同步开始前的提交；这里必须重新读取 main。
+          # 同步派发时要拿到它刚提交的快照，始终读取 main 的最新提交。
           ref: main
           persist-credentials: false
 
@@ -70,10 +67,15 @@ jobs:
         if: steps.config.outputs.ready == 'true'
         env:
           NEXT_PUBLIC_SITE_URL: https://models.onenovalab.com
+          DATA_ONLY: ${{ inputs.data_only == true }}
         run: |
           npm ci
-          npm run lint
-          node --test scripts/deploy/oss.test.mjs
+          # 同步派发的部署只换了数据、代码没动，lint 与单测结果不会变，跳过省 Actions 用量；
+          # 构建和下面的 verify-onenova 质量检查照常执行。推送代码与手动运行仍跑全套。
+          if [ "$DATA_ONLY" != "true" ]; then
+            npm run lint
+            node --test scripts/deploy/oss.test.mjs scripts/ci/snapshot-changed.test.mjs
+          fi
           npm run build
           npx tsx scripts/qa/verify-onenova.ts
 

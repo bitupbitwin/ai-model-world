@@ -2,7 +2,8 @@ name: 同步模型数据
 
 # 这个工作流是整个「发布后不用人管」承诺的发动机。
 #
-# 它每天两次抓上游、校验、把快照提交回仓库，deploy-oss.yml 在同步成功后通过 workflow_run 构建与部署。
+# 它每天一次抓上游、校验，数据真有变化才把快照提交回仓库，并主动触发 deploy-oss.yml 构建与部署；
+# 没有真变化（只是时间戳刷新）就不提交、也不部署。
 # 抓取跑在 GitHub Actions 的境外节点上，因此能访问 Hugging Face——
 # 那是补齐参数量与开源许可证的唯一来源，从中国大陆是连不上的。
 #
@@ -10,21 +11,23 @@ name: 同步模型数据
 
 on:
   schedule:
-    # 每 12 小时一次。上游 models.dev 的 CI 每小时第 17 分钟跑，我们错开到第 40 分钟，
-    # 这样抓到的总是它刚同步完的新数据。
+    # 每天一次，北京时间早上 9 点。上游 models.dev 的 CI 每小时第 17 分钟跑，
+    # 整点抓到的是它 40 多分钟前刚同步完的数据。
     #
-    # 从每小时改成每天两次，是因为模型发布本来就不是按小时发生的事，
-    # 实测连着跑两次多数时候只有几个价格小数点在动。真要抢时效就手动触发
+    # 2026-10 起从每天两次改成每天一次：这个 fork 曾因 Actions 用量被 GitHub 暂停，
+    # 而模型发布本来就不是按小时发生的事。真要抢时效就手动触发
     # （Actions 页的 Run workflow，或者 gh workflow run sync.yml），一分钟就跑完。
     #
-    # GitHub 的 cron 走 UTC，这里的 01:40 与 13:40 对应北京时间的 09:40 与 21:40。
-    - cron: '40 1,13 * * *'
+    # GitHub 的 cron 走 UTC，这里的 01:00 对应北京时间 09:00；GitHub 高峰期可能晚几十分钟才触发。
+    - cron: '0 1 * * *'
   workflow_dispatch:
 
-# 只申请所需的最小权限：contents 用于提交快照，issues 用于同步失败时开 issue 留痕
+# 只申请所需的最小权限：contents 用于提交快照，issues 用于同步失败时开 issue 留痕，
+# actions 用于提交后触发部署（GITHUB_TOKEN 的提交不会触发 push 工作流，只能主动派发）
 permissions:
   contents: write
   issues: write
+  actions: write
 
 concurrency:
   group: sync
@@ -59,9 +62,12 @@ jobs:
         run: npm run sync
 
       - name: 提交快照
+        id: commit
         run: |
-          if git diff --quiet -- data/; then
-            echo "上游无变化，跳过提交"
+          # 快照顶层的 generatedAt / fetchedAt 每次都会刷新，只按 git diff 判断会天天「有变化」。
+          # 去掉时间戳后数据没变，就不提交，也不部署（scripts/ci/snapshot-changed.mjs）。
+          if [ "$(node scripts/ci/snapshot-changed.mjs)" = "unchanged" ]; then
+            echo "数据无实质变化（只有时间戳刷新），跳过提交与部署"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
@@ -81,6 +87,14 @@ jobs:
           ")
           git commit -m "同步模型快照：${summary}"
           git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      # 只有真提交了新快照才部署。data_only=true 让部署跳过只与代码有关的 lint 与单测。
+      - name: 触发部署
+        if: steps.commit.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-oss.yml --ref main -f data_only=true
 
       # 闸门拦截时留下证据，方便回溯是哪一次上游出了问题
       - name: 上传同步报告
