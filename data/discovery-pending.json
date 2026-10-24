@@ -1,6 +1,6 @@
 {
   "_note": "只有单一上游源收录、尚未达到多源佐证门槛的模型。等到第二个独立源也收录它，下一次同步就会自动晋升进 data/models.json。例外：厂商已在 src/data/vendor-registry.ts 登记的，openrouter 或 vercel-gateway 单源即晋升，不会出现在这里。",
-  "generatedAt": "2026-10-14T18:09:53.794Z",
+  "generatedAt": "2026-10-24T13:03:00.691Z",
   "pending": [
     {
       "id": "aion-labs/aion-3.5",
@@ -76,12 +76,6 @@
     },
     {
       "id": "anthropic/claude-opus-5.5-batch",
-      "sources": [
-        "vercel-gateway"
-      ]
-    },
-    {
-      "id": "anthropic/claude-opus-5.5-fast",
       "sources": [
         "vercel-gateway"
       ]
@@ -183,6 +177,18 @@
       ]
     },
     {
+      "id": "moondream/moondream3-preview",
+      "sources": [
+        "openrouter"
+      ]
+    },
+    {
+      "id": "moondream/moondream3.1-9b-a2b",
+      "sources": [
+        "openrouter"
+      ]
+    },
+    {
       "id": "nex-agi/nex-n2.5-mini",
       "sources": [
         "openrouter"
@@ -220,18 +226,6 @@
     },
     {
       "id": "openai/gpt-4.1-mini-fast",
-      "sources": [
-        "vercel-gateway"
-      ]
-    },
-    {
-      "id": "openai/gpt-4.1-nano-batch",
-      "sources": [
-        "vercel-gateway"
-      ]
-    },
-    {
-      "id": "openai/gpt-4.1-nano-fast",
       "sources": [
         "vercel-gateway"
       ]
@@ -459,12 +453,6 @@
       ]
     },
     {
-      "id": "openai/o4-mini-fast",
-      "sources": [
-        "vercel-gateway"
-      ]
-    },
-    {
       "id": "openai/o4-mini-high",
       "sources": [
         "openrouter"
@@ -489,6 +477,24 @@
       ]
     },
     {
+      "id": "reflection/beam-free",
+      "sources": [
+        "vercel-gateway"
+      ]
+    },
+    {
+      "id": "scaledown/scaledown-extract-1",
+      "sources": [
+        "vercel-gateway"
+      ]
+    },
+    {
+      "id": "scaledown/scaledown-summarize-1",
+      "sources": [
+        "vercel-gateway"
+      ]
+    },
+    {
       "id": "stealth/glyph-cluster",
       "sources": [
         "vercel-gateway"
@@ -501,7 +507,7 @@
       ]
     },
     {
-      "id": "unbiased/pareto-26.10-preview",
+      "id": "unbiased/pareto-26.10",
       "sources": [
         "openrouter"
       ]
